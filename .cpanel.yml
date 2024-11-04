@@ -1,0 +1,4 @@
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/norimy/repositories/ambatucar
+    - /bin/cp -R * $DEPLOYPATH
