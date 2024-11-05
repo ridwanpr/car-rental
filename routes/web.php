@@ -6,6 +6,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Backend\AdminController;
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Auth\Socialite\LoginController;
+use App\Http\Controllers\Frontend\CarListController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -37,5 +38,7 @@ Route::middleware('auth')->group(function () {
         });
     });
 });
+
+Route::get('car-list', [CarListController::class, 'index'])->name('car-list');
 
 require __DIR__ . '/auth.php';

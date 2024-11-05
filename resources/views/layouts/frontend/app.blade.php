@@ -20,6 +20,8 @@
     <div id="app">
         @include('layouts.frontend.partials.nav')
         @yield('content')
+
+        @include('layouts.frontend.partials.footer')
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>

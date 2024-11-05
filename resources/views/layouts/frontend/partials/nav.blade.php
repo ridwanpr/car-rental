@@ -12,10 +12,10 @@
             <!-- Login Button -->
             <ul class="navbar-nav me-4 mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    <a class="nav-link" href="{{ route('welcome') }}">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Car List</a>
+                    <a class="nav-link" href="{{ route('car-list') }}">Car List</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Calculate Price</a>
