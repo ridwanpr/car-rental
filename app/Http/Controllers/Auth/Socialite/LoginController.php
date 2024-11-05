@@ -9,19 +9,6 @@ use Laravel\Socialite\Facades\Socialite;
 
 class LoginController extends Controller
 {
-    public function redirectToFacebook()
-    {
-        return Socialite::driver('facebook')->redirect();
-    }
-
-    public function handleFacebookCallback()
-    {
-        $user = Socialite::driver('facebook')->user();
-        $authUser = $this->findOrCreateUser($user, 'facebook');
-        Auth::login($authUser, true);
-        return redirect()->intended('dashboard');
-    }
-
     public function redirectToGoogle()
     {
         return Socialite::driver('google')->redirect();

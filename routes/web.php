@@ -12,8 +12,6 @@ Route::get('/', function () {
 })->name('welcome');
 
 // Socialite Auth
-Route::get('login/facebook', [LoginController::class, 'redirectToFacebook'])->name('login.facebook');
-Route::get('login/facebook/callback', [LoginController::class, 'handleFacebookCallback']);
 Route::get('login/google', [LoginController::class, 'redirectToGoogle'])->name('login.google');
 Route::get('login/google/callback', [LoginController::class, 'handleGoogleCallback']);
 
