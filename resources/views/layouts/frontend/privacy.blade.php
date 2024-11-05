@@ -9,7 +9,7 @@
                 <p>Welcome to Ambatucar (“us”, “we”, or “our”). This privacy policy explains how we collect, use, disclose,
                     and
                     safeguard your information when you visit our website <a
-                        href="https://ambatucar.sakurani.my.id">ambatucar.sakurani.my.id</a> (the “Service”). Please read
+                        href="https://car.nori.my">car.nori.my</a> (the “Service”). Please read
                     this
                     privacy policy carefully. If you do not agree with the terms of this privacy policy, please do not
                     access the

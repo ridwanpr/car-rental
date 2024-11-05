@@ -11,10 +11,13 @@
         integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     @vite(['resources/js/app.js', 'resources/scss/app.scss'])
+    <link type="text/css" href="{{ asset('css/volt.css') }}" rel="stylesheet">
+    @stack('css')
 </head>
 
 <body>
     <div id="app">
+        @include('layouts.frontend.partials.nav')
         @yield('content')
     </div>
 
@@ -22,6 +25,7 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 
+    @stack('js')
     <script>
         function displayNotyf(message, type = 'success') {
             const notyf = new Notyf({
