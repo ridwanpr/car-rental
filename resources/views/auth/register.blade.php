@@ -2,24 +2,26 @@
 
 @section('content')
     <main>
-        <section class="vh-lg-100 mt-5 mt-lg-0 bg-soft d-flex align-items-center">
+        <section class="mt-4 d-flex align-items-center">
             <div class="container">
-                <p class="text-center">
-                    <a href="{{ route('welcome') }}" class="d-flex align-items-center justify-content-center">
-                        <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd"
-                                d="M7.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l2.293 2.293a1 1 0 010 1.414z"
-                                clip-rule="evenodd"></path>
-                        </svg>
-                        Back to homepage
-                    </a>
-                </p>
+                <div class="row justify-content-center">
+                    <div class="col-12 text-center mb-3">
+                        <a href="{{ route('welcome') }}" class="d-inline-flex align-items-center justify-content-center">
+                            <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd"
+                                    d="M7.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l2.293 2.293a1 1 0 010 1.414z"
+                                    clip-rule="evenodd"></path>
+                            </svg>
+                            Back to homepage
+                        </a>
+                    </div>
+                </div>
                 <div class="row justify-content-center form-bg-image">
                     <div class="col-12 d-flex align-items-center justify-content-center">
-                        <div class="bg-white shadow border-0 rounded border-light p-4 p-lg-5 w-100 fmxw-500">
+                        <div class="bg-white shadow border-0 rounded border-light p-4 p-lg-5 w-100 mb-4 fmxw-500">
                             <div class="text-center text-md-center mb-4 mt-md-0">
-                                <h1 class="mb-0 h3">Create Account </h1>
+                                <h1 class="mb-0 h3">Create Account</h1>
                             </div>
                             <form method="POST" action="{{ route('register') }}" class="mt-4">
                                 @csrf
@@ -49,8 +51,7 @@
                                                 <path
                                                     d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z">
                                                 </path>
-                                                <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z">
-                                                </path>
+                                                <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
                                             </svg>
                                         </span>
                                         <input type="email" class="form-control" placeholder="example@company.com"
@@ -92,8 +93,7 @@
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" value="" id="remember">
                                             <label class="form-check-label fw-normal mb-0" for="remember">
-                                                I agree to the <a href="#" class="fw-bold">terms and
-                                                    conditions</a>
+                                                I agree to the <a href="#" class="fw-bold">terms and conditions</a>
                                             </label>
                                         </div>
                                     </div>
@@ -106,7 +106,8 @@
                                 <span class="fw-normal">or login with</span>
                             </div>
                             <div class="d-flex justify-content-center my-4">
-                                <a href="{{ route('login.google') }}" class="btn btn-icon-only btn-pill btn-outline-gray-500 me-2"
+                                <a href="{{ route('login.google') }}"
+                                    class="btn btn-icon-only btn-pill btn-outline-gray-500 me-2"
                                     aria-label="twitter button" title="twitter button">
                                     <svg xmlns="http://www.w3.org/2000/svg" x-bind:width="size"
                                         x-bind:height="size" viewBox="0 0 24 24" fill="none"

@@ -12,13 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('cars', function (Blueprint $table) {
-            $table->id();
-            $table->string('merk');
+            $table->uuid('id')->primary();
             $table->string('model');
-            $table->integer('tahun');
-            $table->string('plat_nomor');
+            $table->integer('tahun')->nullable();
+            $table->string('plat_nomor')->nullable();
             $table->double('harga_sewa', 10, 2);
-            $table->string('image')->nullable();
+            $table->string('jumlah_kursi')->nullable();
+            $table->string('bahan_bakar')->nullable();
+            $table->string('transmission')->nullable();
             $table->enum('status', ['disewa', 'tersedia'])->default('tersedia');
             $table->timestamps();
         });

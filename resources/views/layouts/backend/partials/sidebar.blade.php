@@ -73,34 +73,19 @@
                 </a>
             </li>
             <hr>
-            <li class="nav-item {{ request()->routeIs('dashboard') ? 'active' : '' }}">
-                <a href="{{ route('dashboard') }}" class="nav-link">
+            <li class="nav-item ">
+                <a href="" class="nav-link">
                     <span class="sidebar-icon">
-                        <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path>
-                            <path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path>
+                        <svg xmlns="http://www.w3.org/2000/svg" x-bind:width="size"
+                            x-bind:height="size" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            x-bind:stroke-width="stroke" stroke-linecap="round" stroke-linejoin="round" width="24"
+                            height="24" stroke-width="2">
+                            <path d="M7 17m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path>
+                            <path d="M17 17m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path>
+                            <path d="M5 17h-2v-6l2 -5h9l4 5h1a2 2 0 0 1 2 2v4h-2m-4 0h-6m-6 -6h15m-6 0v-5"></path>
                         </svg>
                     </span>
                     <span class="sidebar-text">Dashboard</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="" class="nav-link d-flex justify-content-between">
-                    <span>
-                        <span class="sidebar-icon">
-                            <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z">
-                                </path>
-                            </svg>
-                        </span>
-                        <span class="sidebar-text">Rent Request</span>
-                    </span>
-                    <span>
-                        <span class="badge badge-sm bg-secondary ms-1 text-gray-800">7</span>
-                    </span>
                 </a>
             </li>
             <li class="nav-item ">
@@ -110,6 +95,22 @@
                             x-bind:height="size" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                             x-bind:stroke-width="stroke" stroke-linecap="round" stroke-linejoin="round" width="24"
                             height="24" stroke-width="2">
+                            <path d="M7 17m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path>
+                            <path d="M17 17m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path>
+                            <path d="M5 17h-2v-6l2 -5h9l4 5h1a2 2 0 0 1 2 2v4h-2m-4 0h-6m-6 -6h15m-6 0v-5"></path>
+                        </svg>
+                    </span>
+                    <span class="sidebar-text">Rent Request</span>
+                    <span class="badge badge-sm bg-secondary ms-1 text-gray-800">7</span>
+                </a>
+            </li>
+            <li class="nav-item ">
+                <a href="" class="nav-link">
+                    <span class="sidebar-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" x-bind:width="size"
+                            x-bind:height="size" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            x-bind:stroke-width="stroke" stroke-linecap="round" stroke-linejoin="round"
+                            width="24" height="24" stroke-width="2">
                             <path d="M7 17m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path>
                             <path d="M17 17m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path>
                             <path d="M5 17h-2v-6l2 -5h9l4 5h1a2 2 0 0 1 2 2v4h-2m-4 0h-6m-6 -6h15m-6 0v-5"></path>

@@ -11,4 +11,9 @@ class CarListController extends Controller
     {
         return view('frontend.car-list.index');
     }
+
+    public function show()
+    {
+        return view('frontend.car-list.show');
+    }
 }

@@ -40,5 +40,6 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('car-list', [CarListController::class, 'index'])->name('car-list');
+Route::get('car-list/{id}', [CarListController::class, 'show'])->name('car-list.show');
 
 require __DIR__ . '/auth.php';
