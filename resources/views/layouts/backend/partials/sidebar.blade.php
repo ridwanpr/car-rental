@@ -109,7 +109,7 @@
                 </a>
             </li>
             <li class="nav-item ">
-                <a href="" class="nav-link">
+                <a href="{{ route('car.index') }}" class="nav-link">
                     <span class="sidebar-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" x-bind:width="size"
                             x-bind:height="size" viewBox="0 0 24 24" fill="none" stroke="currentColor"

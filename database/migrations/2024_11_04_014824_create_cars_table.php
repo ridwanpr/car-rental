@@ -20,7 +20,8 @@ return new class extends Migration
             $table->string('jumlah_kursi')->nullable();
             $table->string('bahan_bakar')->nullable();
             $table->string('transmission')->nullable();
-            $table->enum('status', ['disewa', 'tersedia'])->default('tersedia');
+            $table->string('slug');
+            $table->enum('status', ['disewa', 'tersedia', 'tidak tersedia'])->default('tidak tersedia');
             $table->timestamps();
         });
     }

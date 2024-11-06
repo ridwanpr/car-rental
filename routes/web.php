@@ -7,6 +7,7 @@ use App\Http\Controllers\Backend\AdminController;
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Auth\Socialite\LoginController;
 use App\Http\Controllers\Backend\BrandController;
+use App\Http\Controllers\Backend\CarController;
 use App\Http\Controllers\Frontend\CarListController;
 
 Route::get('/', function () {
@@ -30,6 +31,7 @@ Route::middleware('auth')->group(function () {
 
         Route::resource('user/admin', AdminController::class);
         Route::resource('brand', BrandController::class);
+        Route::resource('car', CarController::class);
     });
 
     Route::middleware('role:' . User::ROLE_USER)->group(function () {
