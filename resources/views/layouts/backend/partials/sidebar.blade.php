@@ -1,5 +1,5 @@
 <nav class="navbar navbar-dark navbar-theme-primary px-4 col-12 d-lg-none">
-    <a class="navbar-brand me-lg-5" href="../../index.html">
+    <a class="navbar-brand me-lg-5" href="{{ route('dashboard') }}">
         <svg xmlns="http://www.w3.org/2000/svg" x-bind:width="size" x-bind:height="size"
             viewBox="0 0 24 24" fill="none" stroke="currentColor" x-bind:stroke-width="stroke" stroke-linecap="round"
             stroke-linejoin="round" width="24" height="24" stroke-width="2">
@@ -74,34 +74,38 @@
             </li>
             <hr>
             <li class="nav-item ">
-                <a href="" class="nav-link">
+                <a href="{{ route('dashboard') }}" class="nav-link">
                     <span class="sidebar-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" x-bind:width="size"
                             x-bind:height="size" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                             x-bind:stroke-width="stroke" stroke-linecap="round" stroke-linejoin="round" width="24"
                             height="24" stroke-width="2">
-                            <path d="M7 17m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path>
-                            <path d="M17 17m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path>
-                            <path d="M5 17h-2v-6l2 -5h9l4 5h1a2 2 0 0 1 2 2v4h-2m-4 0h-6m-6 -6h15m-6 0v-5"></path>
+                            <path d="M3 3v18h18"></path>
+                            <path d="M20 18v3"></path>
+                            <path d="M16 16v5"></path>
+                            <path d="M12 13v8"></path>
+                            <path d="M8 16v5"></path>
+                            <path d="M3 11c6 0 5 -5 9 -5s3 5 9 5"></path>
                         </svg>
                     </span>
                     <span class="sidebar-text">Dashboard</span>
                 </a>
             </li>
             <li class="nav-item ">
-                <a href="" class="nav-link">
+                <a href="{{ route('brand.index') }}" class="nav-link">
                     <span class="sidebar-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" x-bind:width="size"
                             x-bind:height="size" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                             x-bind:stroke-width="stroke" stroke-linecap="round" stroke-linejoin="round" width="24"
                             height="24" stroke-width="2">
-                            <path d="M7 17m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path>
-                            <path d="M17 17m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path>
-                            <path d="M5 17h-2v-6l2 -5h9l4 5h1a2 2 0 0 1 2 2v4h-2m-4 0h-6m-6 -6h15m-6 0v-5"></path>
+                            <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
+                            <path d="M12 12m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path>
+                            <path d="M12 14l0 7"></path>
+                            <path d="M10 12l-6.75 -2"></path>
+                            <path d="M14 12l6.75 -2"></path>
                         </svg>
                     </span>
-                    <span class="sidebar-text">Rent Request</span>
-                    <span class="badge badge-sm bg-secondary ms-1 text-gray-800">7</span>
+                    <span class="sidebar-text">Manage Brand</span>
                 </a>
             </li>
             <li class="nav-item ">
@@ -117,24 +121,6 @@
                         </svg>
                     </span>
                     <span class="sidebar-text">Manage Cars</span>
-                </a>
-            </li>
-            <li class="nav-item ">
-                <a href="" class="nav-link">
-                    <span class="sidebar-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" x-bind:width="size"
-                            x-bind:height="size" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            x-bind:stroke-width="stroke" stroke-linecap="round" stroke-linejoin="round"
-                            width="24" height="24" stroke-width="2">
-                            <path d="M12 19h-6a3 3 0 0 1 -3 -3v-8a3 3 0 0 1 3 -3h12a3 3 0 0 1 3 3v4.5"></path>
-                            <path d="M3 10h18"></path>
-                            <path d="M16 19h6"></path>
-                            <path d="M19 16l3 3l-3 3"></path>
-                            <path d="M7.005 15h.005"></path>
-                            <path d="M11 15h2"></path>
-                        </svg>
-                    </span>
-                    <span class="sidebar-text">Payment Method</span>
                 </a>
             </li>
             <li class="nav-item">
@@ -190,8 +176,42 @@
                     </ul>
                 </div>
             </li>
-
-
+            <li class="nav-item ">
+                <a href="" class="nav-link">
+                    <span class="sidebar-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" x-bind:width="size"
+                            x-bind:height="size" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            x-bind:stroke-width="stroke" stroke-linecap="round" stroke-linejoin="round"
+                            width="24" height="24" stroke-width="2">
+                            <path d="M12 19h-6a3 3 0 0 1 -3 -3v-8a3 3 0 0 1 3 -3h12a3 3 0 0 1 3 3v4.5"></path>
+                            <path d="M3 10h18"></path>
+                            <path d="M16 19h6"></path>
+                            <path d="M19 16l3 3l-3 3"></path>
+                            <path d="M7.005 15h.005"></path>
+                            <path d="M11 15h2"></path>
+                        </svg>
+                    </span>
+                    <span class="sidebar-text">Payment Method</span>
+                </a>
+            </li>
+            <li class="nav-item ">
+                <a href="" class="nav-link">
+                    <span class="sidebar-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" x-bind:width="size"
+                            x-bind:height="size" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            x-bind:stroke-width="stroke" stroke-linecap="round" stroke-linejoin="round"
+                            width="24" height="24" stroke-width="2">
+                            <path
+                                d="M18 4a3 3 0 0 1 3 3v8a3 3 0 0 1 -3 3h-5l-5 3v-3h-2a3 3 0 0 1 -3 -3v-8a3 3 0 0 1 3 -3h12z">
+                            </path>
+                            <path d="M12 8v3"></path>
+                            <path d="M12 14v.01"></path>
+                        </svg>
+                    </span>
+                    <span class="sidebar-text">Rent Request</span>
+                    <span class="badge badge-sm bg-secondary ms-1 text-gray-800">7</span>
+                </a>
+            </li>
             <li class="nav-item ">
                 <a href="" class="nav-link">
                     <span class="sidebar-icon">

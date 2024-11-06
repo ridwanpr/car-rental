@@ -38,6 +38,9 @@
     </div>
 
     <div class="card border-0 shadow mb-4">
+        <div class="card-header">
+            <h2 class="h5 mb-0">Admin List</h2>
+        </div>
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-centered table-nowrap mb-0 rounded">
@@ -56,7 +59,7 @@
                                 <td>{{ $admin->name }}</td>
                                 <td>{{ $admin->email }}</td>
                                 <td>
-                                    <a href="{{ route('admin.edit', $admin->id) }}" class="btn btn-sm btn-info">
+                                    <a href="{{ route('admin.edit', $admin->id) }}" class="btn btn-sm btn-primary">
                                         <span>
                                             <svg xmlns="http://www.w3.org/2000/svg" x-bind:width="size"
                                                 x-bind:height="size" viewBox="0 0 24 24" fill="none"
@@ -68,10 +71,10 @@
                                                 </path>
                                                 <path d="M4 20l1.768 -1.768"></path>
                                             </svg>
-                                            Edit
                                         </span>
                                     </a>
-                                    <form action="{{ route('admin.destroy', $admin->id) }}" method="POST" class="d-inline delete-form">
+                                    <form action="{{ route('admin.destroy', $admin->id) }}" method="POST"
+                                        class="d-inline delete-form">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-sm btn-danger delete-btn">
@@ -85,7 +88,6 @@
                                                     <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"></path>
                                                     <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"></path>
                                                 </svg>
-                                                Delete
                                             </span>
                                         </button>
                                     </form>
