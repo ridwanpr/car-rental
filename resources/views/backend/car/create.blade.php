@@ -27,7 +27,7 @@
 
     <div class="card border-0 shadow mb-4">
         <div class="card-body">
-            <form action="" method="POST">
+            <form action="{{ route('car.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="row">
                     <div class="col-md-6 mb-3">
@@ -90,6 +90,19 @@
                         </select>
                     </div>
                 </div>
+
+                <!-- Image upload -->
+                <div class="row mb-3">
+                    <div class="col-12">
+                        <label class="form-label">Vehicle Images</label>
+                        <input type="file" class="form-control" id="images" name="images[]" multiple
+                            accept="image/*">
+                        <small class="text-muted d-block mt-1">Click on an image to set it as primary</small>
+                        <div id="image-preview" class="mt-2 d-flex flex-wrap gap-3"></div>
+                        <input type="hidden" name="primary_image" id="primary_image">
+                    </div>
+                </div>
+
                 <div class="d-flex justify-content-end">
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
@@ -97,3 +110,128 @@
         </div>
     </div>
 @endsection
+@push('css')
+    <style>
+        .image-container {
+            width: 150px;
+            cursor: pointer;
+            position: relative;
+            border: 3px solid transparent;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .image-container img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .image-container.primary {
+            border-color: #0d6efd;
+        }
+
+        .primary-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #0d6efd;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            display: none;
+        }
+
+        .image-container.primary .primary-badge {
+            display: block;
+        }
+
+        .delete-btn {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: rgba(220, 53, 69, 0.9);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .delete-btn:hover {
+            background: rgba(220, 53, 69, 1);
+        }
+    </style>
+@endpush
+@push('js')
+    <script>
+        $(document).ready(function() {
+            $('#images').on('change', function(e) {
+                $('#image-preview').empty();
+
+                $.each(e.target.files, function(i, file) {
+                    const reader = new FileReader();
+
+                    reader.onload = function(e) {
+                        const container = $('<div>')
+                            .addClass('image-container')
+                            .attr('data-index', i);
+
+                        const img = $('<img>').attr('src', e.target.result);
+                        const badge = $('<span>')
+                            .addClass('primary-badge')
+                            .text('Primary');
+                        const deleteBtn = $('<button>')
+                            .addClass('delete-btn')
+                            .html('×')
+                            .attr('type', 'button');
+
+                        container.append(img).append(badge).append(deleteBtn);
+
+                        // Set first image as primary by default
+                        if (i === 0) {
+                            container.addClass('primary');
+                            $('#primary_image').val(0);
+                        }
+
+                        $('#image-preview').append(container);
+                    }
+
+                    reader.readAsDataURL(file);
+                });
+            });
+
+            // Handle image selection
+            $('#image-preview').on('click', '.image-container', function(e) {
+                if (!$(e.target).hasClass('delete-btn')) {
+                    $('.image-container').removeClass('primary');
+                    $(this).addClass('primary');
+                    $('#primary_image').val($(this).data('index'));
+                }
+            });
+
+            // Handle delete button
+            $('#image-preview').on('click', '.delete-btn', function(e) {
+                e.stopPropagation();
+                const container = $(this).closest('.image-container');
+                const isPrimary = container.hasClass('primary');
+
+                container.remove();
+
+                // If we removed the primary image, set the first remaining image as primary
+                if (isPrimary) {
+                    const firstImage = $('.image-container').first();
+                    if (firstImage.length) {
+                        firstImage.addClass('primary');
+                        $('#primary_image').val(firstImage.data('index'));
+                    }
+                }
+            });
+        });
+    </script>
+@endpush

@@ -45,6 +45,7 @@
                     <thead class="thead-light">
                         <tr>
                             <th class="border-0 rounded-start">#</th>
+                            <th class="border-0">Image</th>
                             <th class="border-0">Brand</th>
                             <th class="border-0">Model</th>
                             <th class="border-0">Year</th>
@@ -58,7 +59,65 @@
                         </tr>
                     </thead>
                     <tbody>
-
+                        @foreach ($cars as $car)
+                            <tr class="align-middle">
+                                <td class="border-0">{{ $loop->iteration }}</td>
+                                <td class="border-0">
+                                    <img src="{{ asset('storage/cars/' . $car->images->firstWhere('is_primary', 1)->image) }}"
+                                        width="50" height="50" class="rounded img-thumbnail object-fit-cover">
+                                </td>
+                                <td class="border-0">{{ $car->brand->name }}</td>
+                                <td class="border-0">{{ $car->model }}</td>
+                                <td class="border-0">{{ $car->tahun }}</td>
+                                <td class="border-0">{{ $car->plat_nomor }}</td>
+                                <td class="border-0">
+                                    @if ($car->status == 'tersedia')
+                                        <span class="badge bg-success">Available</span>
+                                    @elseif ($car->status == 'tidak tersedia')
+                                        <span class="badge bg-danger">Unavailable</span>
+                                    @else
+                                        <span class="badge bg-warning">Rented</span>
+                                    @endif
+                                </td>
+                                <td class="border-0">{{ number_format($car->harga_sewa, 0, ',', '.') }}</td>
+                                <td class="border-0">{{ $car->jumlah_kursi }} Person</td>
+                                <td class="border-0 text-capitalize">{{ $car->bahan_bakar }}</td>
+                                <td class="border-0 text-capitalize">{{ $car->transmission }}</td>
+                                <td class="border-0">
+                                    <a href="" class="btn btn-sm btn-primary">
+                                        <span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" x-bind:width="size"
+                                                x-bind:height="size" viewBox="0 0 24 24" fill="none"
+                                                stroke="currentColor" x-bind:stroke-width="stroke" stroke-linecap="round"
+                                                stroke-linejoin="round" width="16" height="16" stroke-width="2">
+                                                <path d="M14 6l7 7l-4 4"></path>
+                                                <path
+                                                    d="M5.828 18.172a2.828 2.828 0 0 0 4 0l10.586 -10.586a2 2 0 0 0 0 -2.829l-1.171 -1.171a2 2 0 0 0 -2.829 0l-10.586 10.586a2.828 2.828 0 0 0 0 4z">
+                                                </path>
+                                                <path d="M4 20l1.768 -1.768"></path>
+                                            </svg>
+                                        </span>
+                                    </a>
+                                    <form action="" method="POST" class="d-inline delete-form">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-sm btn-danger delete-btn">
+                                            <span>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <path d="M4 7l16 0"></path>
+                                                    <path d="M10 11l0 6"></path>
+                                                    <path d="M14 11l0 6"></path>
+                                                    <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"></path>
+                                                    <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"></path>
+                                                </svg>
+                                            </span>
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
