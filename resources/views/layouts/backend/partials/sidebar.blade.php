@@ -73,7 +73,7 @@
                 </a>
             </li>
             <hr>
-            <li class="nav-item ">
+            <li class="nav-item {{ request()->routeIs('dashboard') ? 'active' : '' }}">
                 <a href="{{ route('dashboard') }}" class="nav-link">
                     <span class="sidebar-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" x-bind:width="size"
@@ -91,7 +91,7 @@
                     <span class="sidebar-text">Dashboard</span>
                 </a>
             </li>
-            <li class="nav-item ">
+            <li class="nav-item {{ request()->routeIs('brand.index') ? 'active' : '' }}"">
                 <a href="{{ route('brand.index') }}" class="nav-link">
                     <span class="sidebar-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" x-bind:width="size"
@@ -108,7 +108,7 @@
                     <span class="sidebar-text">Manage Brand</span>
                 </a>
             </li>
-            <li class="nav-item ">
+            <li class="nav-item {{ request()->routeIs('car.index') ? 'active' : '' }}"">
                 <a href="{{ route('car.index') }}" class="nav-link">
                     <span class="sidebar-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" x-bind:width="size"

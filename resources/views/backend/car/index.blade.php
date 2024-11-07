@@ -46,15 +46,13 @@
                         <tr>
                             <th class="border-0 rounded-start">#</th>
                             <th class="border-0">Image</th>
-                            <th class="border-0">Brand</th>
-                            <th class="border-0">Model</th>
+                            <th class="border-0">Brand, Model</th>
                             <th class="border-0">Year</th>
                             <th class="border-0">Police Number</th>
                             <th class="border-0">Status</th>
                             <th class="border-0">Rent Price</th>
                             <th class="border-0">Capacity</th>
-                            <th class="border-0">Fuel</th>
-                            <th class="border-0">Transmission</th>
+                            <th class="border-0">Fuel, Transmission</th>
                             <th class="border-0">Action</th>
                         </tr>
                     </thead>
@@ -66,8 +64,7 @@
                                     <img src="{{ asset('storage/cars/' . $car->images->firstWhere('is_primary', 1)->image) }}"
                                         width="50" height="50" class="rounded img-thumbnail object-fit-cover">
                                 </td>
-                                <td class="border-0">{{ $car->brand->name }}</td>
-                                <td class="border-0">{{ $car->model }}</td>
+                                <td class="border-0">{{ $car->brand->name }}, {{ $car->model }}</td>
                                 <td class="border-0">{{ $car->tahun }}</td>
                                 <td class="border-0">{{ $car->plat_nomor }}</td>
                                 <td class="border-0">
@@ -81,10 +78,9 @@
                                 </td>
                                 <td class="border-0">{{ number_format($car->harga_sewa, 0, ',', '.') }}</td>
                                 <td class="border-0">{{ $car->jumlah_kursi }} Person</td>
-                                <td class="border-0 text-capitalize">{{ $car->bahan_bakar }}</td>
-                                <td class="border-0 text-capitalize">{{ $car->transmission }}</td>
+                                <td class="border-0 text-capitalize">{{ $car->bahan_bakar }}, {{ $car->transmission }}</td>
                                 <td class="border-0">
-                                    <a href="" class="btn btn-sm btn-primary">
+                                    <a href="{{ route('car.edit', $car->id) }}" class="btn btn-sm btn-primary">
                                         <span>
                                             <svg xmlns="http://www.w3.org/2000/svg" x-bind:width="size"
                                                 x-bind:height="size" viewBox="0 0 24 24" fill="none"
@@ -98,7 +94,7 @@
                                             </svg>
                                         </span>
                                     </a>
-                                    <form action="" method="POST" class="d-inline delete-form">
+                                    <form action="{{ route('car.destroy', $car->id) }}" method="POST" class="d-inline delete-form">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-sm btn-danger delete-btn">
