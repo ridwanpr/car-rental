@@ -9,10 +9,9 @@ use App\Http\Controllers\Auth\Socialite\LoginController;
 use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CarController;
 use App\Http\Controllers\Frontend\CarListController;
+use App\Http\Controllers\Frontend\WelcomeController;
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('welcome');
+Route::get('/', WelcomeController::class)->name('welcome');
 
 // Socialite Auth
 Route::get('login/google', [LoginController::class, 'redirectToGoogle'])->name('login.google');
@@ -44,6 +43,6 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('car-list', [CarListController::class, 'index'])->name('car-list');
-Route::get('car-list/{id}', [CarListController::class, 'show'])->name('car-list.show');
+Route::get('car-list/{slug}', [CarListController::class, 'show'])->name('car-list.show');
 
 require __DIR__ . '/auth.php';

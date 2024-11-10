@@ -42,169 +42,28 @@
             </div>
 
             <div class="row g-4">
-
-                <div class="col-12 col-md-6 col-lg-4">
-                    <div class="card h-100 shadow-sm">
-                        <img src="{{ asset('assets/img/hero_car.png') }}" class="card-img-top" alt="Car 1">
-                        <div class="card-body">
-                            <h5 class="card-title">Toyota Camry 2024</h5>
-                            <p class="card-text text-muted">
-                                <i class="bi bi-gear"></i> Automatic •
-                                <i class="bi bi-people"></i> 5 Seats •
-                                <i class="bi bi-fuel-pump"></i> Hybrid
-                            </p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <span class="h5 mb-0">Rp. 200.000 / day</span>
-                                <button class="btn btn-primary">Rent Now</button>
+                @foreach ($cars as $car)
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <a href="{{ route('car-list.show', $car->slug) }}">
+                            <div class="card h-100 shadow-sm">
+                                <img src="{{ asset('storage/cars/' . $car->images->firstWhere('is_primary', 1)->image) }}"
+                                    class="card-img-top" alt="Car 2">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ $car->brand->name }} {{ $car->model }}</h5>
+                                    <p class="card-text text-muted text-capitalize">
+                                        <i class="bi bi-gear"></i> {{ $car->transmission }} •
+                                        <i class="bi bi-people"></i> {{ $car->jumlah_kursi }} Seats •
+                                        <i class="bi bi-fuel-pump"></i> {{ $car->bahan_bakar }}
+                                    </p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="h5 mb-0">Rp. {{ number_format($car->harga_sewa, 0, ',', ',') }} / day</span>
+                                        <button class="btn btn-primary">Rent Now</button>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+                        </a>
                     </div>
-                </div>
-
-                <div class="col-12 col-md-6 col-lg-4">
-                    <div class="card h-100 shadow-sm">
-                        <img src="{{ asset('assets/img/hero_car.png') }}" class="card-img-top" alt="Car 2">
-                        <div class="card-body">
-                            <h5 class="card-title">Honda CR-V</h5>
-                            <p class="card-text text-muted">
-                                <i class="bi bi-gear"></i> Automatic •
-                                <i class="bi bi-people"></i> 5 Seats •
-                                <i class="bi bi-fuel-pump"></i> Gasoline
-                            </p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <span class="h5 mb-0">Rp. 300.000 / day</span>
-                                <button class="btn btn-primary">Rent Now</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-12 col-md-6 col-lg-4">
-                    <div class="card h-100 shadow-sm">
-                        <img src="{{ asset('assets/img/hero_car.png') }}" class="card-img-top" alt="Car 3">
-                        <div class="card-body">
-                            <h5 class="card-title">Tesla Model 3</h5>
-                            <p class="card-text text-muted">
-                                <i class="bi bi-gear"></i> Automatic •
-                                <i class="bi bi-people"></i> 5 Seats •
-                                <i class="bi bi-battery-charging"></i> Electric
-                            </p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <span class="h5 mb-0">Rp. 400.000 / day</span>
-                                <button class="btn btn-primary">Rent Now</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-12 col-md-6 col-lg-4">
-                    <div class="card h-100 shadow-sm">
-                        <img src="{{ asset('assets/img/hero_car.png') }}" class="card-img-top" alt="Car 1">
-                        <div class="card-body">
-                            <h5 class="card-title">Toyota Camry 2024</h5>
-                            <p class="card-text text-muted">
-                                <i class="bi bi-gear"></i> Automatic •
-                                <i class="bi bi-people"></i> 5 Seats •
-                                <i class="bi bi-fuel-pump"></i> Hybrid
-                            </p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <span class="h5 mb-0">Rp. 200.000 / day</span>
-                                <button class="btn btn-primary">Rent Now</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-12 col-md-6 col-lg-4">
-                    <div class="card h-100 shadow-sm">
-                        <img src="{{ asset('assets/img/hero_car.png') }}" class="card-img-top" alt="Car 2">
-                        <div class="card-body">
-                            <h5 class="card-title">Honda CR-V</h5>
-                            <p class="card-text text-muted">
-                                <i class="bi bi-gear"></i> Automatic •
-                                <i class="bi bi-people"></i> 5 Seats •
-                                <i class="bi bi-fuel-pump"></i> Gasoline
-                            </p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <span class="h5 mb-0">Rp. 300.000 / day</span>
-                                <button class="btn btn-primary">Rent Now</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-12 col-md-6 col-lg-4">
-                    <div class="card h-100 shadow-sm">
-                        <img src="{{ asset('assets/img/hero_car.png') }}" class="card-img-top" alt="Car 3">
-                        <div class="card-body">
-                            <h5 class="card-title">Tesla Model 3</h5>
-                            <p class="card-text text-muted">
-                                <i class="bi bi-gear"></i> Automatic •
-                                <i class="bi bi-people"></i> 5 Seats •
-                                <i class="bi bi-battery-charging"></i> Electric
-                            </p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <span class="h5 mb-0">Rp. 400.000 / day</span>
-                                <button class="btn btn-primary">Rent Now</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-12 col-md-6 col-lg-4">
-                    <div class="card h-100 shadow-sm">
-                        <img src="{{ asset('assets/img/hero_car.png') }}" class="card-img-top" alt="Car 1">
-                        <div class="card-body">
-                            <h5 class="card-title">Toyota Camry 2024</h5>
-                            <p class="card-text text-muted">
-                                <i class="bi bi-gear"></i> Automatic •
-                                <i class="bi bi-people"></i> 5 Seats •
-                                <i class="bi bi-fuel-pump"></i> Hybrid
-                            </p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <span class="h5 mb-0">Rp. 200.000 / day</span>
-                                <button class="btn btn-primary">Rent Now</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-12 col-md-6 col-lg-4">
-                    <div class="card h-100 shadow-sm">
-                        <img src="{{ asset('assets/img/hero_car.png') }}" class="card-img-top" alt="Car 2">
-                        <div class="card-body">
-                            <h5 class="card-title">Honda CR-V</h5>
-                            <p class="card-text text-muted">
-                                <i class="bi bi-gear"></i> Automatic •
-                                <i class="bi bi-people"></i> 5 Seats •
-                                <i class="bi bi-fuel-pump"></i> Gasoline
-                            </p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <span class="h5 mb-0">Rp. 300.000 / day</span>
-                                <button class="btn btn-primary">Rent Now</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-12 col-md-6 col-lg-4">
-                    <div class="card h-100 shadow-sm">
-                        <img src="{{ asset('assets/img/hero_car.png') }}" class="card-img-top" alt="Car 3">
-                        <div class="card-body">
-                            <h5 class="card-title">Tesla Model 3</h5>
-                            <p class="card-text text-muted">
-                                <i class="bi bi-gear"></i> Automatic •
-                                <i class="bi bi-people"></i> 5 Seats •
-                                <i class="bi bi-battery-charging"></i> Electric
-                            </p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <span class="h5 mb-0">Rp. 400.000 / day</span>
-                                <button class="btn btn-primary">Rent Now</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+                @endforeach
             </div>
         </div>
     </section>

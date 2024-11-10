@@ -9,6 +9,10 @@ class Car extends Model
 {
     use HasUuids;
 
+    public const STATUS_ACTIVE = 'tersedia';
+    public const STATUS_NOT_ACTIVE = 'tidak tersedia';
+    public const STATUS_RENTED = 'disewa';
+
     protected $fillable = [
         'brand_id',
         'model',
