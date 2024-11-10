@@ -14,7 +14,7 @@
                 </div>
                 <div class="carousel-inner">
                     @foreach ($car->images as $image)
-                        <div class="carousel-item active">
+                        <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
                             <img src="{{ asset('storage/cars/' . $image->image) }}" class="d-block w-100 rounded"
                                 alt="car images">
                         </div>
