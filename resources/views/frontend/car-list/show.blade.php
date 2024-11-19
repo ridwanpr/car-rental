@@ -3,13 +3,13 @@
     <div class="container mt-4">
         <!-- Carousel Section -->
         <div class="shadow-sm rounded">
-            <div id="carouselExampleIndicators" class="carousel slide">
+            <div id="carCarouselImage" class="carousel slide">
                 <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+                    <button type="button" data-bs-target="#carCarouselImage" data-bs-slide-to="0" class="active"
                         aria-current="true" aria-label="Slide 1"></button>
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                    <button type="button" data-bs-target="#carCarouselImage" data-bs-slide-to="1"
                         aria-label="Slide 2"></button>
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                    <button type="button" data-bs-target="#carCarouselImage" data-bs-slide-to="2"
                         aria-label="Slide 3"></button>
                 </div>
                 <div class="carousel-inner">
@@ -20,19 +20,18 @@
                         </div>
                     @endforeach
                 </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                <button class="carousel-control-prev" type="button" data-bs-target="#carCarouselImage"
                     data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Previous</span>
                 </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+                <button class="carousel-control-next" type="button" data-bs-target="#carCarouselImage"
                     data-bs-slide="next">
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Next</span>
                 </button>
             </div>
         </div>
-
         <div class="row mt-4 mb-4">
             <div class="col-12">
                 <div class="card shadow-sm border-0 rounded-3">
@@ -42,7 +41,6 @@
                             <span class="badge bg-primary rounded-pill fs-4 px-4">Rp.
                                 {{ number_format($car->harga_sewa, 0, ',', ',') }} / day</span>
                         </div>
-
                         <div class="row g-4 mb-4">
                             <div class="col-md-6">
                                 <div class="card h-100 bg-light border-0">
@@ -64,7 +62,6 @@
                                     </div>
                                 </div>
                             </div>
-
                             <div class="col-md-6">
                                 <div class="card h-100 bg-light border-0">
                                     <div class="card-body py-4">
@@ -88,24 +85,30 @@
                             </div>
                         </div>
 
-                        <!-- New Booking Section -->
                         <div class="card bg-primary border-0 text-white mb-4">
                             <div class="card-body py-4">
                                 <div class="row align-items-center">
                                     <div class="col-md-8">
                                         <h3 class="fs-4 mb-2">Ready to rent this car?</h3>
-                                        <p class="mb-md-0">Book now and get instant confirmation for your rental</p>
+                                        <p class="mb-md-0">Book now and get confirmation for your rental</p>
                                     </div>
-                                    <div class="col-md-4 text-md-end">
-                                        <a href="" class="btn btn-white btn-lg px-4 fw-medium">
-                                            <i class="fa-solid fa-arrow-right me-2"></i>Book Now
+                                    <div class="col-md-4 text-md-end d-flex justify-content-end">
+                                        <button class="btn btn-success btn-lg me-2" id="addToBookingList"
+                                            data-car-id="{{ $car->id }}" data-car-brand="{{ $car->brand->name }}"
+                                            data-car-model="{{ $car->model }}">
+                                            <i class="fa-solid fa-cart-plus"></i> <span class="text-nowrap">Add to Booking
+                                                List</span>
+                                        </button>
+                                        <a href="" class="btn btn-white btn-lg">
+                                            <i class="fa-solid fa-arrow-right"></i> <span class="text-nowrap">Book
+                                                Now</span>
                                         </a>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="card bg-light border-0">
+                        <div class="card bg-light border-0 mb-4">
                             <div class="card-body py-4">
                                 <div class="d-flex align-items-center">
                                     <i class="bi bi-car-front-fill text-primary display-5 me-3"></i>
@@ -122,6 +125,7 @@
         </div>
     </div>
 @endsection
+
 @push('css')
     <style>
         .carousel-inner {
@@ -143,5 +147,29 @@
                 height: 300px;
             }
         }
+
+        .notyf__toast {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+        }
     </style>
+@endpush
+
+@push('js')
+    <script>
+        $(document).ready(function() {
+            const notyf = new Notyf();
+
+            $('#addToBookingList').click(function() {
+                const carId = $(this).data('car-id');
+                const carBrand = $(this).data('car-brand');
+                const carModel = $(this).data('car-model');
+
+                notyf.success(carBrand + ' ' + carModel + ' added to booking list', {
+                    dismissible: true
+                });
+            });
+        });
+    </script>
 @endpush
