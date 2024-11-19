@@ -7,7 +7,7 @@
             </div>
             <div class="col-md-4">
                 <div class="card shadow-sm p-4 border-0">
-                    <h4 class="card-title mb-3 text-center">Rental Car Price Calculation</h4>
+                    <h4 class="card-title mb-3 text-center">Cost Estimator</h4>
                     <div class="form-group mb-4">
                         <label for="rent-price">Enter Daily Rent Price (IDR)</label>
                         <input type="number" class="form-control" id="rent-price" placeholder="Enter daily rent price..."
