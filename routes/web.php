@@ -11,6 +11,7 @@ use App\Http\Controllers\Frontend\WelcomeController;
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Auth\Socialite\LoginController;
 use App\Http\Controllers\Backend\PaymentMethodController;
+use App\Http\Controllers\Frontend\DashboardController as UserDashboardController;
 
 Route::get('/', WelcomeController::class)->name('welcome');
 
@@ -37,9 +38,7 @@ Route::middleware('auth')->group(function () {
 
     Route::middleware('role:' . User::ROLE_USER)->group(function () {
         Route::middleware('verified')->group(function () {
-            Route::get('mypanel/dashboard', function () {
-                return 'dashboard';
-            })->name('user.dashboard');
+            Route::get('mypanel/dashboard', [UserDashboardController::class, 'index'])->name('user.dashboard');
         });
     });
 });

@@ -8,6 +8,7 @@ export default defineConfig({
                 'resources/scss/app.scss',
                 'resources/js/app.js',
                 'resources/js/price-estimator.js',
+                'resources/scss/user-dashboard.scss',
             ],
             refresh: true,
         }),

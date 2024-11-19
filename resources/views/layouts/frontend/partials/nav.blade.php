@@ -39,7 +39,8 @@
                 <a href="{{ route('register') }}" class="btn btn-outline-primary">Get Started</a>
             @endguest
             @auth
-                <a href="{{ route('dashboard') }}" class="btn btn-outline-primary">Dashboard</a>
+                <a href="{{ auth()->user()->role_id == 'admin' ? route('dashboard') : route('user.dashboard') }}"
+                    class="btn btn-outline-primary">Dashboard</a>
             @endauth
         </div>
     </div>

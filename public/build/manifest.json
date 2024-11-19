@@ -15,5 +15,10 @@
     "file": "assets/app-DFpyN7Gx.css",
     "src": "resources/scss/app.scss",
     "isEntry": true
+  },
+  "resources/scss/user-dashboard.scss": {
+    "file": "assets/user-dashboard-CCUshQj8.css",
+    "src": "resources/scss/user-dashboard.scss",
+    "isEntry": true
   }
 }
