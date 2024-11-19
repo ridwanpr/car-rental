@@ -95,9 +95,15 @@
                                     <div class="col-md-4 text-md-end d-flex justify-content-end">
                                         <button class="btn btn-success btn-lg me-2" id="addToBookingList"
                                             data-car-id="{{ $car->id }}" data-car-brand="{{ $car->brand->name }}"
-                                            data-car-model="{{ $car->model }}">
-                                            <i class="fa-solid fa-cart-plus"></i> <span class="text-nowrap">Add to Booking
-                                                List</span>
+                                            data-car-model="{{ $car->model }}"
+                                            @if ($isInBookingList) disabled @endif>
+                                            <i class="fa-solid fa-cart-plus"></i> <span class="text-nowrap">
+                                                @if ($isInBookingList)
+                                                    Car in Booking List
+                                                @else
+                                                    Add to Booking List
+                                                @endif
+                                            </span>
                                         </button>
                                         <a href="" class="btn btn-white btn-lg">
                                             <i class="fa-solid fa-arrow-right"></i> <span class="text-nowrap">Book
@@ -157,19 +163,5 @@
 @endpush
 
 @push('js')
-    <script>
-        $(document).ready(function() {
-            const notyf = new Notyf();
-
-            $('#addToBookingList').click(function() {
-                const carId = $(this).data('car-id');
-                const carBrand = $(this).data('car-brand');
-                const carModel = $(this).data('car-model');
-
-                notyf.success(carBrand + ' ' + carModel + ' added to booking list', {
-                    dismissible: true
-                });
-            });
-        });
-    </script>
+    @vite(['resources/js/booking.js'])
 @endpush

@@ -9,6 +9,8 @@ export default defineConfig({
                 'resources/js/app.js',
                 'resources/js/price-estimator.js',
                 'resources/scss/user-dashboard.scss',
+                'resources/js/booking.js',
+                'resources/js/booking-list.js',
             ],
             refresh: true,
         }),

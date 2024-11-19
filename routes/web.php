@@ -10,6 +10,7 @@ use App\Http\Controllers\Frontend\CarListController;
 use App\Http\Controllers\Frontend\WelcomeController;
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Auth\Socialite\LoginController;
+use App\Http\Controllers\Frontend\BookingListController;
 use App\Http\Controllers\Backend\PaymentMethodController;
 use App\Http\Controllers\Frontend\DashboardController as UserDashboardController;
 
@@ -26,9 +27,9 @@ Route::middleware('auth')->group(function () {
     Route::middleware('role:' . User::ROLE_ADMIN)->group(function () {
         Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-        Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-        Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-        Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+        Route::get('profile', [ProfileController::class, 'edit'])->name('profile.edit');
+        Route::patch('profile', [ProfileController::class, 'update'])->name('profile.update');
+        Route::delete('profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
         Route::resource('user/admin', AdminController::class);
         Route::resource('brand', BrandController::class);
@@ -39,6 +40,9 @@ Route::middleware('auth')->group(function () {
     Route::middleware('role:' . User::ROLE_USER)->group(function () {
         Route::middleware('verified')->group(function () {
             Route::get('mypanel/dashboard', [UserDashboardController::class, 'index'])->name('user.dashboard');
+
+            Route::post('booking-list/add', [BookingListController::class, 'add'])->name('booking-list.add');
+            Route::get('booking-list', [BookingListController::class, 'index'])->name('booking-list.index');
         });
     });
 });

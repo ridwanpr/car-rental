@@ -5,6 +5,18 @@
     "src": "resources/js/app.js",
     "isEntry": true
   },
+  "resources/js/booking-list.js": {
+    "file": "assets/booking-list-B9fk7AQd.js",
+    "name": "booking-list",
+    "src": "resources/js/booking-list.js",
+    "isEntry": true
+  },
+  "resources/js/booking.js": {
+    "file": "assets/booking-CB6Kcgrn.js",
+    "name": "booking",
+    "src": "resources/js/booking.js",
+    "isEntry": true
+  },
   "resources/js/price-estimator.js": {
     "file": "assets/price-estimator-cal7aHUz.js",
     "name": "price-estimator",
@@ -17,7 +29,7 @@
     "isEntry": true
   },
   "resources/scss/user-dashboard.scss": {
-    "file": "assets/user-dashboard-CCUshQj8.css",
+    "file": "assets/user-dashboard-TtwzZQ5J.css",
     "src": "resources/scss/user-dashboard.scss",
     "isEntry": true
   }

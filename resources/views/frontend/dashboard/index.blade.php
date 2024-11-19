@@ -13,7 +13,7 @@
         </div>
 
         <!-- Stats Cards Row -->
-        <div class="row g-4 mb-5">
+        <div class="row g-4">
             <div class="col-xl-3 col-md-6">
                 <div class="card border-0 shadow-sm h-100 py-2">
                     <div class="card-body">
@@ -98,11 +98,34 @@
             </div>
         </div>
 
+        <!-- Navigation -->
+        <div class="card my-4 shadow-sm rounded">
+            <div id="cardNav">
+                <div class="card-body">
+                    <ul class="list-group list-group-horizontal">
+                        <li class="list-group-item">
+                            <a href="#" class="text-decoration-none text-dark">Dashboard</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="{{ route('booking-list.index') }}" class="text-decoration-none text-dark">Booking List</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="#" class="text-decoration-none text-dark">Rents List</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="#" class="text-decoration-none text-dark">Tickets</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
         <!-- Recent Bookings Table -->
         <div class="card border-0 shadow-sm mb-5">
             <div class="card-header bg-white py-4">
                 <div class="d-flex justify-content-between align-items-center">
                     <h5 class="mb-0">Recent Bookings</h5>
+                    <a href="#" class="btn btn-link btn-sm">View All</a>
                 </div>
             </div>
             <div class="card-body py-4">

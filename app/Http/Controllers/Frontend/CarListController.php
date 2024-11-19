@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use App\Http\Controllers\Controller;
 use App\Models\Car;
+use App\Models\BookingList;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class CarListController extends Controller
 {
@@ -24,6 +25,10 @@ class CarListController extends Controller
             ->where('slug', $slug)
             ->first();
 
-        return view('frontend.car-list.show', compact('car'));
+        $isInBookingList = BookingList::where('user_id', auth()->id())
+            ->where('car_id', $car->id)
+            ->exists();
+
+        return view('frontend.car-list.show', compact('car', 'isInBookingList'));
     }
 }
