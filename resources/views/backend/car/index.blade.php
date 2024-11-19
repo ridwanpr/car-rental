@@ -41,7 +41,7 @@
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-centered table-nowrap mb-0 rounded">
+                <table class="table table-centered table-nowrap mb-0 rounded" id="datatable">
                     <thead class="thead-light">
                         <tr>
                             <th class="border-0 rounded-start">#</th>

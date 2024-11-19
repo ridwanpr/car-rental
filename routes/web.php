@@ -3,13 +3,14 @@
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\Backend\AdminController;
-use App\Http\Controllers\Backend\DashboardController;
-use App\Http\Controllers\Auth\Socialite\LoginController;
-use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CarController;
+use App\Http\Controllers\Backend\AdminController;
+use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Frontend\CarListController;
 use App\Http\Controllers\Frontend\WelcomeController;
+use App\Http\Controllers\Backend\DashboardController;
+use App\Http\Controllers\Auth\Socialite\LoginController;
+use App\Http\Controllers\Backend\PaymentMethodController;
 
 Route::get('/', WelcomeController::class)->name('welcome');
 
@@ -31,6 +32,7 @@ Route::middleware('auth')->group(function () {
         Route::resource('user/admin', AdminController::class);
         Route::resource('brand', BrandController::class);
         Route::resource('car', CarController::class);
+        Route::resource('payment-method', PaymentMethodController::class);
     });
 
     Route::middleware('role:' . User::ROLE_USER)->group(function () {

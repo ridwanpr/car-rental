@@ -11,10 +11,6 @@
     <!-- Smooth scroll -->
     <script src="{{ asset('vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js') }}"></script>
 
-    <!-- Charts -->
-    <script src="{{ asset('vendor/chartist/dist/chartist.min.js') }}"></script>
-    <script src="{{ asset('vendor/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js') }}"></script>
-
     <!-- Datepicker -->
     <script src="{{ asset('vendor/vanillajs-datepicker/dist/js/datepicker.min.js') }}"></script>
 
@@ -30,18 +26,16 @@
     <!-- Notyf -->
     <script src="{{ asset('vendor/notyf/notyf.min.js') }}"></script>
 
-    <!-- Simplebar -->
-    <script src="{{ asset('vendor/simplebar/dist/simplebar.min.js') }}"></script>
-
-    <!-- Github buttons -->
-    <script async defer src="https://buttons.github.io/buttons.js"></script>
-
     <!-- Volt JS -->
     <script src="{{ asset('assets/js/volt.js') }}"></script>
 
     <!-- JQUERY CDN -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+    <!-- DATATABLE CDN -->
+    <script src="https://cdn.datatables.net/2.1.8/js/dataTables.js" defer></script>
+    <script src="https://cdn.datatables.net/2.1.8/js/dataTables.bootstrap5.js" defer></script>
 
     <script>
         function displayNotyf(message, type = 'success') {
@@ -109,5 +103,7 @@
                     }
                 });
             });
+
+            $('#datatable').DataTable();
         });
     </script>

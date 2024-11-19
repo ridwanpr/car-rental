@@ -39,7 +39,7 @@ class CarController extends Controller
             'fuel' => 'required',
             'transmission' => 'required',
             'primary_image' => 'required|numeric',
-            'images.*' => 'required|image|mimes:jpeg,png,jpg|max:2048'
+            'images.*' => 'required|image|max:2048'
         ]);
 
         DB::beginTransaction();
@@ -87,7 +87,7 @@ class CarController extends Controller
             foreach ($imageRecords ?? [] as $record) {
                 Storage::delete('cars/' . $record['image']);
             }
-
+            
             session()->flash('errors', $e->getMessage());
             return redirect()->back()->withInput();
         }

@@ -13,13 +13,13 @@
                         </svg>
                     </a>
                 </li>
-                <li class="breadcrumb-item"><a href="javascript:void(0);">Manage Brand</a></li>
+                <li class="breadcrumb-item"><a href="javascript:void(0);">Payment Method</a></li>
             </ol>
         </nav>
         <div class="d-flex justify-content-between w-100 flex-wrap">
             <div class="mb-3 mb-lg-0">
-                <h1 class="h4">Manage Brand</h1>
-                <p class="mb-0">Here is a list of all brand. You can add, edit or delete brand.</p>
+                <h1 class="h4">Manage Payment Method</h1>
+                <p class="mb-0">Here is a list of all payment method. You can add, edit or delete payment method.</p>
             </div>
         </div>
     </div>
@@ -28,14 +28,30 @@
         <div class="col-12 col-md-4">
             <div class="card border-0 shadow mb-4">
                 <div class="card-header">
-                    <h2 class="h5 mb-0">Add Brand</h2>
+                    <h2 class="h5 mb-0">Add Payment Method</h2>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('brand.store') }}" method="POST">
+                    <form action="{{ route('payment-method.store') }}" method="POST">
                         @csrf
                         <div class="mb-3">
                             <label for="name" class="form-label">Name</label>
                             <input type="text" class="form-control" id="name" name="name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="account_number" class="form-label">Account Number</label>
+                            <input type="text" class="form-control" id="account_number" name="account_number" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="account_name" class="form-label">Account Name</label>
+                            <input type="text" class="form-control" id="account_name" name="account_name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="bank_name" class="form-label">Bank Name</label>
+                            <input type="text" class="form-control" id="bank_name" name="bank_name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="description" class="form-label">Description</label>
+                            <textarea class="form-control" id="description" name="description" rows="3"></textarea>
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
@@ -45,7 +61,7 @@
         <div class="col-12 col-md-8">
             <div class="card border-0 shadow mb-4">
                 <div class="card-header">
-                    <h2 class="h5 mb-0">Brand List</h2>
+                    <h2 class="h5 mb-0">Payment Method List</h2>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -54,18 +70,28 @@
                                 <tr>
                                     <th class="border-0 rounded-start">#</th>
                                     <th class="border-0">Name</th>
+                                    <th class="border-0">Account Number</th>
+                                    <th class="border-0">Account Name</th>
+                                    <th class="border-0">Bank Name</th>
                                     <th class="border-0">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($brands as $brand)
+                                @foreach ($paymentMethods as $paymentMethod)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $brand->name }}</td>
+                                        <td>{{ $paymentMethod->name }}</td>
+                                        <td>{{ $paymentMethod->account_number }}</td>
+                                        <td>{{ $paymentMethod->account_name }}</td>
+                                        <td>{{ $paymentMethod->bank_name }}</td>
                                         <td>
-                                            <a href="{{ route('brand.edit', $brand->id) }}" data-id="{{ $brand->id }}"
-                                                data-name="{{ $brand->name }}" class="btn btn-sm btn-primary"
-                                                data-bs-toggle="modal" data-bs-target="#modal-edit-brand">
+                                            <a href="javascript:void(0);" class="btn btn-sm btn-primary"
+                                                data-id="{{ $paymentMethod->id }}" data-name="{{ $paymentMethod->name }}"
+                                                data-description="{{ $paymentMethod->description }}"
+                                                data-account_number="{{ $paymentMethod->account_number }}"
+                                                data-account_name="{{ $paymentMethod->account_name }}"
+                                                data-bank_name="{{ $paymentMethod->bank_name }}" data-toggle="modal"
+                                                data-target="#modalEdit">
                                                 <span>
                                                     <svg xmlns="http://www.w3.org/2000/svg" x-bind:width="size"
                                                         x-bind:height="size" viewBox="0 0 24 24" fill="none"
@@ -80,8 +106,8 @@
                                                     </svg>
                                                 </span>
                                             </a>
-                                            <form action="{{ route('brand.destroy', $brand->id) }}" method="POST"
-                                                class="d-inline delete-form">
+                                            <form action="{{ route('payment-method.destroy', $paymentMethod->id) }}"
+                                                method="POST" class="d-inline delete-form">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-sm btn-danger delete-btn">
@@ -114,21 +140,5 @@
     @include('backend.brand._modal-edit')
 @endpush
 @push('js')
-    <script>
-        $(document).ready(function() {
-            $('#modal-edit-brand').on('show.bs.modal', function(event) {
-                const button = $(event.relatedTarget);
-                const id = button.data('id');
-                const name = button.data('name');
-
-                const modal = $(this);
-                modal.find('#name').val(name);
-
-                const form = modal.find('#editBrandForm');
-                form.attr('action', '/brand/' + id);
-                form.attr('method', 'POST');
-                form.append('<input type="hidden" name="_method" value="PUT">');
-            });
-        });
-    </script>
+    <script></script>
 @endpush
