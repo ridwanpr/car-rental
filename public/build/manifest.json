@@ -5,6 +5,12 @@
     "src": "resources/js/app.js",
     "isEntry": true
   },
+  "resources/js/price-estimator.js": {
+    "file": "assets/price-estimator-cal7aHUz.js",
+    "name": "price-estimator",
+    "src": "resources/js/price-estimator.js",
+    "isEntry": true
+  },
   "resources/scss/app.scss": {
     "file": "assets/app-DFpyN7Gx.css",
     "src": "resources/scss/app.scss",

@@ -18,7 +18,7 @@
                     <a class="nav-link" href="{{ route('car-list') }}">Car List</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Calculate Price</a>
+                    <a class="nav-link" href="/calculate-price">Calculate Price</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Contact Us</a>

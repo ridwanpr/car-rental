@@ -46,5 +46,6 @@ Route::middleware('auth')->group(function () {
 
 Route::get('car-list', [CarListController::class, 'index'])->name('car-list');
 Route::get('car-list/{slug}', [CarListController::class, 'show'])->name('car-list.show');
+Route::view('calculate-price', 'frontend.calculate-price.index');
 
 require __DIR__ . '/auth.php';
