@@ -34,7 +34,7 @@ class RegisteredUserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'cf-turnstile-response' => ['required', Rule::turnstile()],
+            'cf-turnstile-response' => app()->environment('production') ? ['required', Rule::turnstile()] : [],
         ]);
 
         $user = User::create([
