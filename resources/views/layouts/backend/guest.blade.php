@@ -11,6 +11,7 @@
     <link type="text/css" href="{{ asset('vendor/sweetalert2/dist/sweetalert2.min.css') }}" rel="stylesheet">
     <link type="text/css" href="{{ asset('vendor/notyf/notyf.min.css') }}" rel="stylesheet">
     <link type="text/css" href="{{ asset('css/volt.css') }}" rel="stylesheet">
+    @turnstileScripts()
 </head>
 
 <body>

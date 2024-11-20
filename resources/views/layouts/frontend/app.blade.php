@@ -15,7 +15,6 @@
     @vite(['resources/js/app.js', 'resources/scss/app.scss'])
     <link type="text/css" href="{{ asset('css/volt.css') }}" rel="stylesheet">
     @stack('css')
-    @turnstileScripts()
 </head>
 
 <body>

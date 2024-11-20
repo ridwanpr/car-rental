@@ -89,15 +89,16 @@
                                                 name="password_confirmation" id="password_confirmation" required>
                                         </div>
                                     </div>
-                                    <x-turnstile />
                                     <div class="mb-4">
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="" id="remember" required>
+                                            <input class="form-check-input" type="checkbox" value="" id="remember"
+                                                required>
                                             <label class="form-check-label fw-normal mb-0" for="remember">
                                                 I agree to the <a href="#" class="fw-bold">terms and conditions</a>
                                             </label>
                                         </div>
                                     </div>
+                                    <x-turnstile />
                                 </div>
                                 <div class="d-grid">
                                     <button type="submit" class="btn btn-gray-800">Sign up</button>

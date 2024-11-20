@@ -61,8 +61,8 @@
                                         <div><a href="{{ route('password.request') }}" class="small text-right">Lost
                                                 password?</a></div>
                                     </div>
+                                    <x-turnstile />
                                 </div>
-                                <x-turnstile />
                                 <div class="d-grid">
                                     <button type="submit" class="btn btn-gray-800">Sign in</button>
                                 </div>
