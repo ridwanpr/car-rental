@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Models\BookingList;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\PaymentMethod;
 
 class BookingListController extends Controller
 {
@@ -28,6 +29,8 @@ class BookingListController extends Controller
             ->where('user_id', auth()->id())
             ->get();
 
-        return view('frontend.booking-list.index', compact('bookingLists'));
+        $paymentMethods = PaymentMethod::select('id', 'name')->get();
+
+        return view('frontend.booking-list.index', compact('bookingLists', 'paymentMethods'));
     }
 }

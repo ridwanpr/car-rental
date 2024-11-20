@@ -9,6 +9,7 @@ use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Frontend\CarListController;
 use App\Http\Controllers\Frontend\WelcomeController;
 use App\Http\Controllers\Backend\DashboardController;
+use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Auth\Socialite\LoginController;
 use App\Http\Controllers\Frontend\BookingListController;
 use App\Http\Controllers\Backend\PaymentMethodController;
@@ -43,6 +44,9 @@ Route::middleware('auth')->group(function () {
 
             Route::post('booking-list/add', [BookingListController::class, 'add'])->name('booking-list.add');
             Route::get('booking-list', [BookingListController::class, 'index'])->name('booking-list.index');
+
+            Route::post('checkout', [CheckoutController::class, 'checkout'])->name('booking-list.checkout');
+            Route::get('payment-created', [CheckoutController::class, 'paymentCreated'])->name('payment-created');
         });
     });
 });

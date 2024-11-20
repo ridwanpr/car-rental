@@ -11,6 +11,7 @@ export default defineConfig({
                 'resources/scss/user-dashboard.scss',
                 'resources/js/booking.js',
                 'resources/js/booking-list.js',
+                'resources/scss/booking-list.scss',
             ],
             refresh: true,
         }),
