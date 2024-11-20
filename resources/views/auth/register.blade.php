@@ -89,6 +89,7 @@
                                                 name="password_confirmation" id="password_confirmation" required>
                                         </div>
                                     </div>
+                                    <x-turnstile />
                                     <div class="mb-4">
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" value="" id="remember" required>
