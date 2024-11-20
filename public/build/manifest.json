@@ -6,7 +6,7 @@
     "isEntry": true
   },
   "resources/js/booking-list.js": {
-    "file": "assets/booking-list-B9fk7AQd.js",
+    "file": "assets/booking-list-BttWTiTp.js",
     "name": "booking-list",
     "src": "resources/js/booking-list.js",
     "isEntry": true
@@ -26,6 +26,11 @@
   "resources/scss/app.scss": {
     "file": "assets/app-DFpyN7Gx.css",
     "src": "resources/scss/app.scss",
+    "isEntry": true
+  },
+  "resources/scss/booking-list.scss": {
+    "file": "assets/booking-list-DBC6KYjh.css",
+    "src": "resources/scss/booking-list.scss",
     "isEntry": true
   },
   "resources/scss/user-dashboard.scss": {
