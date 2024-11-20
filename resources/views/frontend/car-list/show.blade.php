@@ -99,11 +99,18 @@
                                                     Booking List</span>
                                             </button>
                                         @else
-                                            <button class="btn btn-success btn-lg me-2" id="addToBookingList"
-                                                data-car-id="{{ $car->id }}">
-                                                <i class="fa-solid fa-cart-plus"></i> <span class="text-nowrap">Add to
-                                                    Booking List</span>
-                                            </button>
+                                            @auth
+                                                <button class="btn btn-success btn-lg me-2" id="addToBookingList"
+                                                    data-car-id="{{ $car->id }}">
+                                                    <i class="fa-solid fa-cart-plus"></i> <span class="text-nowrap">Add to
+                                                        Booking List</span>
+                                                </button>
+                                            @else
+                                                <a href="{{ route('login') }}" class="btn btn-success btn-lg me-2">
+                                                    <i class="fa-solid fa-cart-plus"></i> <span class="text-nowrap">Add
+                                                        to Booking List</span>
+                                                </a>
+                                            @endauth
                                         @endif
                                         <a href="{{ auth()->check() ? route('booking-list.index') : route('login') }}"
                                             class="btn btn-white btn-lg">
