@@ -91,7 +91,7 @@
                                     </div>
                                     <div class="mb-4">
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="" id="remember">
+                                            <input class="form-check-input" type="checkbox" value="" id="remember" required>
                                             <label class="form-check-label fw-normal mb-0" for="remember">
                                                 I agree to the <a href="#" class="fw-bold">terms and conditions</a>
                                             </label>

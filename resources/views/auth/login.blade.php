@@ -58,12 +58,6 @@
                                         </div>
                                     </div>
                                     <div class="d-flex justify-content-between align-items-top mb-4">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="" id="remember">
-                                            <label class="form-check-label mb-0" for="remember">
-                                                Remember me
-                                            </label>
-                                        </div>
                                         <div><a href="{{ route('password.request') }}" class="small text-right">Lost
                                                 password?</a></div>
                                     </div>

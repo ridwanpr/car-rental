@@ -93,19 +93,20 @@
                                         <p class="mb-md-0">Book now and get confirmation for your rental</p>
                                     </div>
                                     <div class="col-md-4 text-md-end d-flex justify-content-end">
-                                        <button class="btn btn-success btn-lg me-2" id="addToBookingList"
-                                            data-car-id="{{ $car->id }}" data-car-brand="{{ $car->brand->name }}"
-                                            data-car-model="{{ $car->model }}"
-                                            @if ($isInBookingList) disabled @endif>
-                                            <i class="fa-solid fa-cart-plus"></i> <span class="text-nowrap">
-                                                @if ($isInBookingList)
-                                                    Car in Booking List
-                                                @else
-                                                    Add to Booking List
-                                                @endif
-                                            </span>
-                                        </button>
-                                        <a href="" class="btn btn-white btn-lg">
+                                        @if ($isInBookingList)
+                                            <button class="btn btn-success btn-lg me-2" id="addToBookingList" disabled>
+                                                <i class="fa-solid fa-cart-plus"></i> <span class="text-nowrap">Car in
+                                                    Booking List</span>
+                                            </button>
+                                        @else
+                                            <button class="btn btn-success btn-lg me-2" id="addToBookingList"
+                                                data-car-id="{{ $car->id }}">
+                                                <i class="fa-solid fa-cart-plus"></i> <span class="text-nowrap">Add to
+                                                    Booking List</span>
+                                            </button>
+                                        @endif
+                                        <a href="{{ auth()->check() ? route('booking-list.index') : route('login') }}"
+                                            class="btn btn-white btn-lg">
                                             <i class="fa-solid fa-arrow-right"></i> <span class="text-nowrap">Book
                                                 Now</span>
                                         </a>
