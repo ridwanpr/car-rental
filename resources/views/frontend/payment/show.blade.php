@@ -110,7 +110,7 @@
                                         <hr>
                                         <div class="d-flex justify-content-between fw-bold">
                                             <span>Total</span>
-                                            <span class="text-primary">Rp.2,750,000</span>
+                                            <span class="text-primary">Rp.{{ number_format($payment->total_amount * 1.12, 0, ',', '.') }}</span>
                                         </div>
                                     </div>
                                 </div>
