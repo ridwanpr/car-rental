@@ -19,4 +19,9 @@ class PaymentMethod extends Model
 
     public $incrementing = false;
     public $keyType = 'string';
+
+    public function payment()
+    {
+        return $this->hasMany(Payment::class);
+    }
 }

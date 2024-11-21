@@ -21,7 +21,7 @@ return new class extends Migration
             $table->date('rent_end');
             $table->decimal('price_per_day', 15, 2);
             $table->decimal('total_price', 15, 2);
-            $table->string('status')->default('ongoing');
+            $table->string('status')->default('pending');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

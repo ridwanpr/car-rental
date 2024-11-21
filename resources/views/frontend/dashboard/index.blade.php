@@ -86,7 +86,7 @@
                                 </div>
                             </div>
                             <div class="flex-grow-1">
-                                <h6 class="fw-bold mb-1">Tickets</h6>
+                                <h6 class="fw-bold mb-1">Payments</h6>
                                 <h2 class="mb-0 fs-4">850</h2>
                                 <div class="small text-success">
                                     <i class="fas fa-arrow-up"></i> 20% from last month
@@ -107,13 +107,14 @@
                             <a href="#" class="text-decoration-none text-dark">Dashboard</a>
                         </li>
                         <li class="list-group-item">
-                            <a href="{{ route('booking-list.index') }}" class="text-decoration-none text-dark">Booking List</a>
+                            <a href="{{ route('booking-list.index') }}" class="text-decoration-none text-dark">Booking
+                                List</a>
                         </li>
                         <li class="list-group-item">
                             <a href="#" class="text-decoration-none text-dark">Rents List</a>
                         </li>
                         <li class="list-group-item">
-                            <a href="#" class="text-decoration-none text-dark">Tickets</a>
+                            <a href="#" class="text-decoration-none text-dark">Payment</a>
                         </li>
                     </ul>
                 </div>
@@ -133,80 +134,58 @@
                     <table class="table table-hover align-middle">
                         <thead class="table-light">
                             <tr>
-                                <th scope="col">Booking ID</th>
+                                <th scope="col">Rent Code</th>
                                 <th scope="col">Car</th>
-                                <th scope="col">Pickup Date</th>
-                                <th scope="col">Return Date</th>
+                                <th scope="col">Rent Start</th>
+                                <th scope="col">Rent End</th>
                                 <th scope="col">Total</th>
                                 <th scope="col">Status</th>
                                 <th scope="col">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>#BK001</td>
-                                <td>
-                                    <div class="d-flex align-items-center">
-                                        <img src="https://via.placeholder.com/40" class="rounded me-2" alt="Car">
-                                        <div>
-                                            <div class="fw-bold">Toyota Camry</div>
-                                            <div class="small text-muted">Sedan</div>
+                            @foreach ($rents as $rent)
+                                <tr>
+                                    <td>{{ $rent->rental_code }}</td>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <img src="{{ asset('storage/cars/' . $rent->car->images->firstWhere('is_primary', 1)->image) }}"
+                                                width="75" height="75" class="rounded img-thumbnail object-fit-cover"
+                                                alt="car image">
+                                            <div class="ms-3">
+                                                <div class="fw-bold">{{ $rent->car->brand->name }} {{ $rent->car->model }}
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </td>
-                                <td>Nov 15, 2024</td>
-                                <td>Nov 18, 2024</td>
-                                <td>$240.00</td>
-                                <td>
-                                    <span class="badge bg-success">
-                                        <i class="fas fa-check-circle me-1"></i> Active
-                                    </span>
-                                </td>
-                                <td>
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary"
-                                            data-bs-toggle="tooltip" title="View Details">
-                                            <i class="fas fa-eye"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-sm btn-outline-secondary"
-                                            data-bs-toggle="tooltip" title="Edit Booking">
-                                            <i class="fas fa-edit"></i>
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>#BK002</td>
-                                <td>
-                                    <div class="d-flex align-items-center">
-                                        <img src="https://via.placeholder.com/40" class="rounded me-2" alt="Car">
-                                        <div>
-                                            <div class="fw-bold">Honda CR-V</div>
-                                            <div class="small text-muted">SUV</div>
+                                    </td>
+                                    <td>{{ $rent->rent_start }}</td>
+                                    <td>{{ $rent->rent_end }}</td>
+                                    <td>Rp {{ number_format($rent->total_price, 0, ',', '.') }}</td>
+                                    <td>
+                                        @if ($rent->status == 'pending')
+                                            <span class="badge bg-warning">Pending</span>
+                                        @elseif ($rent->status == 'approved')
+                                            <span class="badge bg-success">Approved</span>
+                                        @elseif ($rent->status == 'canceled')
+                                            <span class="badge bg-danger">Canceled</span>
+                                        @elseif ($rent->status == 'completed')
+                                            <span class="badge bg-info">Completed</span>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-sm btn-outline-secondary"
+                                                data-bs-toggle="tooltip" title="View Details">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button type="button" class="btn btn-sm btn-outline-secondary"
+                                                data-bs-toggle="tooltip" title="Edit Booking">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
                                         </div>
-                                    </div>
-                                </td>
-                                <td>Nov 20, 2024</td>
-                                <td>Nov 25, 2024</td>
-                                <td>$450.00</td>
-                                <td>
-                                    <span class="badge bg-warning text-dark">
-                                        <i class="fas fa-clock me-1"></i> Pending
-                                    </span>
-                                </td>
-                                <td>
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary"
-                                            data-bs-toggle="tooltip" title="View Details">
-                                            <i class="fas fa-eye"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-sm btn-outline-secondary"
-                                            data-bs-toggle="tooltip" title="Edit Booking">
-                                            <i class="fas fa-edit"></i>
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

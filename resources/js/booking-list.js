@@ -54,6 +54,16 @@ $(document).ready(function () {
         }
     });
 
+    $('#payment_method').on('change', function () {
+        const paymentMethod = $(this).val();
+
+        if (paymentMethod === 'auto') {
+            console.log('auto');
+        } else {
+            console.log('manual');
+        }
+    });
+
     $('#checkout').on('click', function () {
         let isValid = true;
         let rentalsData = [];
@@ -92,7 +102,6 @@ $(document).ready(function () {
         if (!isValid) return;
 
         const paymentMethod = $('#payment_method').find(":selected").val();
-        console.log(paymentMethod);
 
         $.ajax({
             url: '/checkout',

@@ -9,6 +9,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\PaymentMethod;
 
 class CheckoutController extends Controller
 {
@@ -39,6 +40,15 @@ class CheckoutController extends Controller
             foreach ($validated['rentals'] as $rental) {
                 $this->createRental($rental, $payment->id);
             }
+
+            session([
+                'checkout_data' => [
+                    'rentals' => $validated['rentals'],
+                    'total_amount' => $validated['total_amount'],
+                    'payment_method' => $validated['payment_method'],
+                    'payment' => $payment
+                ]
+            ]);
 
             $this->deleteBookingList();
 
@@ -80,7 +90,7 @@ class CheckoutController extends Controller
             'rent_end' => $rentalData['rent_end'],
             'price_per_day' => $rentalData['price_per_day'],
             'total_price' => $rentalData['total_price'],
-            'status' => 'ongoing'
+            'status' => 'pending'
         ]);
     }
 
@@ -108,6 +118,12 @@ class CheckoutController extends Controller
 
     public function paymentCreated()
     {
-        return view('frontend.payment.show');
+        $payment = Payment::with('rent')
+            ->findOrFail(session('checkout_data')['payment']['id']);
+
+        $paymentMethod = PaymentMethod::findOrFail($payment->payment_method);
+        // dd($payment);
+
+        return view('frontend.payment.show', compact('payment', 'paymentMethod'));
     }
 }

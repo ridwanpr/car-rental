@@ -13,4 +13,19 @@ class Payment extends Model
         'status',
         'payment_method'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function rent()
+    {
+        return $this->hasMany(Rent::class);
+    }
+
+    public function paymentMethod()
+    {
+        return $this->belongsTo(PaymentMethod::class);
+    }
 }
