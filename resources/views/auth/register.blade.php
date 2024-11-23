@@ -89,7 +89,7 @@
                                                 name="password_confirmation" id="password_confirmation" required>
                                         </div>
                                     </div>
-                                    <div class="mb-4">
+                                    <div class="mb-2">
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" value="" id="remember"
                                                 required>
@@ -101,7 +101,7 @@
                                     <x-turnstile />
                                 </div>
                                 <div class="d-grid">
-                                    <button type="submit" class="btn btn-gray-800">Sign up</button>
+                                    <button type="submit" class="btn btn-gray-800 mt-2">Sign up</button>
                                 </div>
                             </form>
                             <div class="mt-3 mb-4 text-center">

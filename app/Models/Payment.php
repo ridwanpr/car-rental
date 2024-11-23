@@ -11,7 +11,8 @@ class Payment extends Model
         'payment_code',
         'total_amount',
         'status',
-        'payment_method'
+        'payment_method',
+        'payment_proof'
     ];
 
     public function user()
@@ -26,6 +27,6 @@ class Payment extends Model
 
     public function paymentMethod()
     {
-        return $this->belongsTo(PaymentMethod::class);
+        return $this->belongsTo(PaymentMethod::class, 'payment_method');
     }
 }

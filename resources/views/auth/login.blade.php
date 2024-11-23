@@ -57,14 +57,14 @@
                                                 name="password" id="password" required>
                                         </div>
                                     </div>
-                                    <div class="d-flex justify-content-between align-items-top mb-4">
+                                    <div class="d-flex justify-content-between align-items-top mb-2">
                                         <div><a href="{{ route('password.request') }}" class="small text-right">Lost
                                                 password?</a></div>
                                     </div>
                                     <x-turnstile />
                                 </div>
                                 <div class="d-grid">
-                                    <button type="submit" class="btn btn-gray-800">Sign in</button>
+                                    <button type="submit" class="btn btn-gray-800 mt-2">Sign in</button>
                                 </div>
                             </form>
                             <div class="mt-3 mb-4 text-center">

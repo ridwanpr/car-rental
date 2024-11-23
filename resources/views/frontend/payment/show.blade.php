@@ -110,7 +110,8 @@
                                         <hr>
                                         <div class="d-flex justify-content-between fw-bold">
                                             <span>Total</span>
-                                            <span class="text-primary">Rp.{{ number_format($payment->total_amount * 1.12, 0, ',', '.') }}</span>
+                                            <span
+                                                class="text-primary">Rp.{{ number_format($payment->total_amount * 1.12, 0, ',', '.') }}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -131,14 +132,17 @@
                             Please complete your payment within 24 hours
                         </div>
 
-                        <div class="mb-3">
-                            <label for="proofUpload" class="form-label fw-bold">Upload Payment Proof</label>
-                            <input class="form-control" type="file" id="proofUpload">
-                        </div>
+                        <form action="{{ route('upload-payment-proof') }}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            <div class="mb-3">
+                                <label for="proofUpload" class="form-label fw-bold">Upload Payment Proof</label>
+                                <input class="form-control" type="file" id="proofUpload" name="payment_proof">
+                            </div>
 
-                        <button class="btn btn-primary w-100" id="confirmPayment">
-                            <i class="fa fa-check me-2"></i>Confirm Payment
-                        </button>
+                            <button class="btn btn-primary w-100" id="confirmPayment">
+                                <i class="fa fa-check me-2"></i>Confirm Payment
+                            </button>
+                        </form>
 
                         <div class="mt-3 text-center">
                             <a href="{{ route('car-list') }}" class="text-muted">

@@ -13,6 +13,7 @@ use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Auth\Socialite\LoginController;
 use App\Http\Controllers\Frontend\BookingListController;
 use App\Http\Controllers\Backend\PaymentMethodController;
+use App\Http\Controllers\Backend\RentRequestController;
 use App\Http\Controllers\Frontend\DashboardController as UserDashboardController;
 
 Route::get('/', WelcomeController::class)->name('welcome');
@@ -36,6 +37,7 @@ Route::middleware('auth')->group(function () {
         Route::resource('brand', BrandController::class);
         Route::resource('car', CarController::class);
         Route::resource('payment-method', PaymentMethodController::class);
+        Route::resource('rent-request', RentRequestController::class);
     });
 
     Route::middleware('role:' . User::ROLE_USER)->group(function () {
@@ -47,6 +49,7 @@ Route::middleware('auth')->group(function () {
 
             Route::post('checkout', [CheckoutController::class, 'checkout'])->name('booking-list.checkout');
             Route::get('payment-created', [CheckoutController::class, 'paymentCreated'])->name('payment-created');
+            Route::post('upload-payment-proof', [CheckoutController::class, 'uploadPaymentProof'])->name('upload-payment-proof');
         });
     });
 });

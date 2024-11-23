@@ -119,11 +119,32 @@ class CheckoutController extends Controller
     public function paymentCreated()
     {
         $payment = Payment::with('rent')
-            ->findOrFail(session('checkout_data')['payment']['id']);
+            ->where('user_id', auth()->id())
+            ->where('status', 'pending')
+            ->first();
 
-        $paymentMethod = PaymentMethod::findOrFail($payment->payment_method);
-        // dd($payment);
+        $paymentMethod = PaymentMethod::find($payment->payment_method);
 
         return view('frontend.payment.show', compact('payment', 'paymentMethod'));
+    }
+
+    public function uploadPaymentProof(Request $request)
+    {
+        $request->validate([
+            'payment_proof' => 'required|max:2048',
+        ]);
+
+        $payment = Payment::where('user_id', auth()->id())
+            ->where('status', 'pending')
+            ->first();
+
+        $fileName = Str::random(10) . '.' . $request->file('payment_proof')->getClientOriginalExtension();
+
+        $payment->update([
+            'payment_proof' => $request->file('payment_proof')->storeAs('payment_proofs', $fileName)
+        ]);
+
+        session()->flash('success', 'Payment created successfully.');
+        return redirect()->route('user.dashboard');
     }
 }

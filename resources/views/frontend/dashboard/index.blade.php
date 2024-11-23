@@ -125,7 +125,7 @@
         <div class="card border-0 shadow-sm mb-5">
             <div class="card-header bg-white py-4">
                 <div class="d-flex justify-content-between align-items-center">
-                    <h5 class="mb-0">Recent Bookings</h5>
+                    <h5 class="mb-0">Pending Payments</h5>
                     <a href="#" class="btn btn-link btn-sm">View All</a>
                 </div>
             </div>
@@ -174,14 +174,10 @@
                                     </td>
                                     <td>
                                         <div class="btn-group">
-                                            <button type="button" class="btn btn-sm btn-outline-secondary"
-                                                data-bs-toggle="tooltip" title="View Details">
-                                                <i class="fas fa-eye"></i>
-                                            </button>
-                                            <button type="button" class="btn btn-sm btn-outline-secondary"
-                                                data-bs-toggle="tooltip" title="Edit Booking">
-                                                <i class="fas fa-edit"></i>
-                                            </button>
+                                            <a href="{{ route('payment-created') }}"
+                                                class="btn btn-sm btn-outline-primary"> <i class="fas fa-eye"></i></a>
+                                            <a href="" class="btn btn-sm btn-outline-danger"> <i
+                                                    class="fas fa-trash"></i></a>
                                         </div>
                                     </td>
                                 </tr>

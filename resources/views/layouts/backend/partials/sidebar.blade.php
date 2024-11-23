@@ -194,8 +194,8 @@
                     <span class="sidebar-text">Payment Method</span>
                 </a>
             </li>
-            <li class="nav-item ">
-                <a href="" class="nav-link">
+            <li class="nav-item {{ request()->routeIs('rent-request.index') ? 'active' : '' }}">
+                <a href="{{ route('rent-request.index') }}" class="nav-link">
                     <span class="sidebar-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" x-bind:width="size"
                             x-bind:height="size" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -209,7 +209,13 @@
                         </svg>
                     </span>
                     <span class="sidebar-text">Rent Request</span>
-                    <span class="badge badge-sm bg-secondary ms-1 text-gray-800">7</span>
+                    @php
+                        $rentRequests = \App\Models\Rent::where('rents.status', 'pending')
+                            ->join('payments', 'rents.payment_id', '=', 'payments.id')
+                            ->count();
+                    @endphp
+                    <span
+                        class="badge badge-sm bg-secondary ms-1 text-gray-800">{{ $rentRequests ? $rentRequests : '0' }}</span>
                 </a>
             </li>
             <li class="nav-item ">
