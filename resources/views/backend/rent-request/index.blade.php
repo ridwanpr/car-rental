@@ -77,13 +77,12 @@
                         @endforeach
                     </tbody>
                 </table>
-                
+
             </div>
         </div>
     </div>
 @endsection
 @push('modals')
-    @include('backend.brand._modal-edit')
 @endpush
 @push('js')
     <script></script>
