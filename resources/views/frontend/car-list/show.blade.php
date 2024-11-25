@@ -100,25 +100,18 @@
                                             </button>
                                         @else
                                             @auth
-                                                <button class="btn btn-success btn-lg me-2" id="addToBookingList"
+                                                <button class="btn btn-white btn-lg me-2" id="addToBookingList"
                                                     data-car-id="{{ $car->id }}"
                                                     @if (auth()->user()->role_id == 'admin') disabled @endif>
                                                     <i class="fa-solid fa-cart-plus"></i> <span class="text-nowrap">Add to
                                                         Booking List</span>
                                                 </button>
                                             @else
-                                                <a href="{{ route('login') }}" class="btn btn-success btn-lg me-2">
+                                                <a href="{{ route('login') }}" class="btn btn-white btn-lg me-2">
                                                     <i class="fa-solid fa-cart-plus"></i> <span class="text-nowrap">Add
                                                         to Booking List</span>
                                                 </a>
                                             @endauth
-                                        @endif
-                                        @if (auth()->user()->role_id != 'admin')
-                                            <a href="{{ auth()->check() ? route('booking-list.index') : route('login') }}"
-                                                class="btn btn-white btn-lg">
-                                                <i class="fa-solid fa-arrow-right"></i> <span class="text-nowrap">Book
-                                                    Now</span>
-                                            </a>
                                         @endif
                                     </div>
                                 </div>
