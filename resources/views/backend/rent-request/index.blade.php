@@ -26,54 +26,48 @@
 
     <div class="card border-0 shadow mb-4">
         <div class="card-header">
-            <h2 class="h5 mb-0">Car List</h2>
+            <h2 class="h5 mb-0">Request List</h2>
         </div>
         <div class="card-body">
             <div class="table-responsive">
-
-                <table class="table table-centered table-nowrap mb-0 rounded" id="datatable">
+                <table class="table table-nowrap mb-0 rounded" id="datatable">
                     <thead class="thead-light">
                         <tr>
-                            <th class="border-0 rounded-start text-center">#</th>
-                            <th class="border-0 text-center">Payment Code</th>
-                            <th class="border-0 text-center">Payment Method</th>
-                            <th class="border-0 text-center">Total Amount</th>
-                            <th class="border-0 text-center">Status</th>
-                            <th class="border-0 text-center">Rental Code</th>
-                            <th class="border-0 text-center">Car Details</th>
-                            <th class="border-0 text-center">Rent Date</th>
-                            <th class="border-0 rounded-end text-center">Action</th>
+                            <th class="border-0 rounded-start">#</th>
+                            <th class="border-0">Payment Code</th>
+                            <th class="border-0">Rental Code</th>
+                            <th class="border-0">Status</th>
+                            <th class="border-0">Car Details</th>
+                            <th class="border-0">Rent Date</th>
+                            <th class="border-0 rounded-end">Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($requests as $request)
-                            @foreach ($request->rent as $rent)
-                                <tr>
-                                    <td class="text-center">{{ $loop->parent->iteration }}</td>
-                                    <td class="text-center">{{ $request->payment_code }}</td>
-                                    <td class="text-center">{{ $request->paymentMethod->name }}</td>
-                                    <td class="text-center">Rp. {{ number_format($request->total_amount, 0, ',', '.') }}
-                                    </td>
-                                    <td class="text-center">
-                                        @if ($request->status == 'pending')
-                                            <span class="badge bg-warning">Pending</span>
-                                        @elseif ($request->status == 'approved')
-                                            <span class="badge bg-success">Approved</span>
-                                        @elseif ($request->status == 'declined')
-                                            <span class="badge bg-danger">Declined</span>
-                                        @endif
-                                    </td>
-                                    <td class="text-center">{{ $rent->rental_code }}</td>
-                                    <td class="text-center">
-                                        {{ $rent->car->brand->name }} - {{ $rent->car->model }}<br>
-                                        Rp. {{ number_format($rent->total_price, 0, ',', '.') }}
-                                    </td>
-                                    <td class="text-center">{{ $rent->rent_start }} to {{ $rent->rent_end }}</td>
-                                    <td class="text-center">
-                                        <button class="btn btn-primary btn-sm">View</button>
-                                    </td>
-                                </tr>
-                            @endforeach
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $request->payment_code }}</td>
+                                <td>{{ $request->rental_code }}</td>
+                                <td>
+                                    @if ($request->rent_status == 'pending')
+                                        <span class="badge bg-warning">Pending</span>
+                                    @elseif ($request->rent_status == 'approved')
+                                        <span class="badge bg-success">Approved</span>
+                                    @elseif ($request->rent_status == 'declined')
+                                        <span class="badge bg-danger">Declined</span>
+                                    @endif
+                                </td>
+                                <td>
+                                    <a href="{{ route('car-list.show', $request->car_id) }}"
+                                        target="_blank">{{ $request->car->brand->name }} {{ $request->car->model }}</a>
+                                </td>
+                                <td>{{ $request->rent_start }} - {{ $request->rent_end }}</td>
+                                <td>
+                                    <button class="btn btn-sm btn-primary" data-bs-toggle="modal"
+                                        data-bs-target="" id="viewRentButton"
+                                        data-request-id="{{ $request->id }}"><i class="fa fa-eye"></i></button>
+                                </td>
+                            </tr>
                         @endforeach
                     </tbody>
                 </table>

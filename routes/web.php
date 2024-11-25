@@ -13,6 +13,7 @@ use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Auth\Socialite\LoginController;
 use App\Http\Controllers\Frontend\BookingListController;
 use App\Http\Controllers\Backend\PaymentMethodController;
+use App\Http\Controllers\Backend\PaymentRequestController;
 use App\Http\Controllers\Backend\RentRequestController;
 use App\Http\Controllers\Frontend\DashboardController as UserDashboardController;
 
@@ -33,11 +34,17 @@ Route::middleware('auth')->group(function () {
         Route::patch('profile', [ProfileController::class, 'update'])->name('profile.update');
         Route::delete('profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
+        Route::get('payments/{id}', [PaymentRequestController::class, 'getPaymentById']);
+        Route::get('/payment/proof/{filename}', [PaymentRequestController::class, 'getPaymentProof'])->name('payment.proof');
+        Route::post('payments/{id}/approve', [PaymentRequestController::class, 'approvePayment'])->name('payments.approve');
+        Route::post('payments/{id}/decline', [PaymentRequestController::class, 'rejectPayment'])->name('payments.reject');
+
         Route::resource('user/admin', AdminController::class);
         Route::resource('brand', BrandController::class);
         Route::resource('car', CarController::class);
         Route::resource('payment-method', PaymentMethodController::class);
         Route::resource('rent-request', RentRequestController::class);
+        Route::resource('payment-request', PaymentRequestController::class);
     });
 
     Route::middleware('role:' . User::ROLE_USER)->group(function () {

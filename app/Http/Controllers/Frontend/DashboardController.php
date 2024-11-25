@@ -3,17 +3,17 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Payment;
 use App\Models\Rent;
 
 class DashboardController extends Controller
 {
     public function index()
     {
-        $rents = Rent::with('car', 'payment')
-            ->where('user_id', auth()->user()->id)
-            ->orderBy('created_at', 'desc')
-            ->limit(5)->get();
+        $payments = Payment::where('user_id', auth()->id())
+            ->with('rent')
+            ->get();
 
-        return view('frontend.dashboard.index', compact('rents'));
+        return view('frontend.dashboard.index', compact('payments'));
     }
 }

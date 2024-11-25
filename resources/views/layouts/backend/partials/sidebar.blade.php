@@ -194,6 +194,31 @@
                     <span class="sidebar-text">Payment Method</span>
                 </a>
             </li>
+
+            <li class="nav-item">
+                <a href="{{ route('payment-request.index') }}" class="nav-link">
+                    <span class="sidebar-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" width="24"
+                            height="24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"
+                            stroke="currentColor">
+                            <path d="M3 5m0 3a3 3 0 0 1 3 -3h12a3 3 0 0 1 3 3v8a3 3 0 0 1 -3 3h-12a3 3 0 0 1 -3 -3z">
+                            </path>
+                            <path d="M3 10l18 0"></path>
+                            <path d="M7 15l.01 0"></path>
+                            <path d="M11 15l2 0"></path>
+                        </svg>
+                    </span>
+                    <span class="sidebar-text">Payment Request</span>
+                    @php
+                        $paymentRequests = \App\Models\Payment::where('status', 'pending')
+                            ->where('payments.payment_proof', '!=', null)
+                            ->count();
+                    @endphp
+                    <span
+                        class="badge badge-sm bg-secondary ms-1 text-gray-800">{{ $paymentRequests ? $paymentRequests : '0' }}</span>
+                </a>
+            </li>
+
             <li class="nav-item {{ request()->routeIs('rent-request.index') ? 'active' : '' }}">
                 <a href="{{ route('rent-request.index') }}" class="nav-link">
                     <span class="sidebar-icon">
@@ -212,6 +237,7 @@
                     @php
                         $rentRequests = \App\Models\Rent::where('rents.status', 'pending')
                             ->join('payments', 'rents.payment_id', '=', 'payments.id')
+                            ->where('payments.status', 'approved')
                             ->count();
                     @endphp
                     <span

@@ -12,6 +12,8 @@ export default defineConfig({
                 'resources/js/booking.js',
                 'resources/js/booking-list.js',
                 'resources/scss/booking-list.scss',
+                'resources/js/payment-request.js',
+                'resources/js/spinner.js',
             ],
             refresh: true,
         }),

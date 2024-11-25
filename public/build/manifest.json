@@ -17,10 +17,22 @@
     "src": "resources/js/booking.js",
     "isEntry": true
   },
+  "resources/js/payment-request.js": {
+    "file": "assets/payment-request-CnKMHfVJ.js",
+    "name": "payment-request",
+    "src": "resources/js/payment-request.js",
+    "isEntry": true
+  },
   "resources/js/price-estimator.js": {
     "file": "assets/price-estimator-cal7aHUz.js",
     "name": "price-estimator",
     "src": "resources/js/price-estimator.js",
+    "isEntry": true
+  },
+  "resources/js/spinner.js": {
+    "file": "assets/spinner-C6X1L793.js",
+    "name": "spinner",
+    "src": "resources/js/spinner.js",
     "isEntry": true
   },
   "resources/scss/app.scss": {

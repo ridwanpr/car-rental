@@ -3,6 +3,7 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Ambatucar</title>
     <link rel="icon" type="image/x-icon" href="{{ asset('assets/img/ambatucar-logo.jpg') }}">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -31,6 +32,7 @@
     @stack('modals')
     @include('layouts.backend.partials.script')
     @stack('js')
+    @vite(['resources/js/spinner.js'])
 </body>
 
 </html>

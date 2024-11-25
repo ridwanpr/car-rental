@@ -134,48 +134,34 @@
                     <table class="table table-hover align-middle">
                         <thead class="table-light">
                             <tr>
-                                <th scope="col">Rent Code</th>
-                                <th scope="col">Car</th>
-                                <th scope="col">Rent Start</th>
-                                <th scope="col">Rent End</th>
-                                <th scope="col">Total</th>
-                                <th scope="col">Status</th>
+                                <th class="border-0 text-center">Payment Code</th>
+                                <th class="border-0 text-center">Total Amount</th>
+                                <th class="border-0 text-center">Status</th>
+                                <th class="border-0 text-center">Payment Method</th>
                                 <th scope="col">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($rents as $rent)
+                            @foreach ($payments as $payment)
                                 <tr>
-                                    <td>{{ $rent->rental_code }}</td>
-                                    <td>
-                                        <div class="d-flex align-items-center">
-                                            <img src="{{ asset('storage/cars/' . $rent->car->images->firstWhere('is_primary', 1)->image) }}"
-                                                width="75" height="75" class="rounded img-thumbnail object-fit-cover"
-                                                alt="car image">
-                                            <div class="ms-3">
-                                                <div class="fw-bold">{{ $rent->car->brand->name }} {{ $rent->car->model }}
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>{{ $rent->rent_start }}</td>
-                                    <td>{{ $rent->rent_end }}</td>
-                                    <td>Rp {{ number_format($rent->total_price, 0, ',', '.') }}</td>
-                                    <td>
-                                        @if ($rent->status == 'pending')
+                                    <td class="text-center">{{ $payment->payment_code }}</td>
+                                    <td class="text-center">{{ $payment->total_amount }}</td>
+                                    <td class="text-center">
+                                        @if ($payment->status == 'pending')
                                             <span class="badge bg-warning">Pending</span>
-                                        @elseif ($rent->status == 'approved')
+                                        @elseif ($payment->status == 'approved')
                                             <span class="badge bg-success">Approved</span>
-                                        @elseif ($rent->status == 'canceled')
-                                            <span class="badge bg-danger">Canceled</span>
-                                        @elseif ($rent->status == 'completed')
-                                            <span class="badge bg-info">Completed</span>
+                                        @elseif ($payment->status == 'declined')
+                                            <span class="badge bg-danger">Declined</span>
                                         @endif
                                     </td>
+                                    <td class="text-center">{{ $payment->paymentMethod->name }} -
+                                        {{ $payment->paymentMethod->bank_name }}
+                                        {{ $payment->paymentMethod->account_number }} | {{ $payment->paymentMethod->account_name }}</td>
                                     <td>
                                         <div class="btn-group">
-                                            <a href="{{ route('payment-created') }}"
-                                                class="btn btn-sm btn-outline-primary"> <i class="fas fa-eye"></i></a>
+                                            <a href="{{ route('payment-created') }}" class="btn btn-sm btn-outline-primary">
+                                                <i class="fas fa-eye"></i></a>
                                             <a href="" class="btn btn-sm btn-outline-danger"> <i
                                                     class="fas fa-trash"></i></a>
                                         </div>
