@@ -98,7 +98,7 @@
                                             </label>
                                         </div>
                                     </div>
-                                    <x-turnstile />
+                                    <x-turnstile data-theme="light" />
                                 </div>
                                 <div class="d-grid">
                                     <button type="submit" class="btn btn-gray-800 mt-2">Sign up</button>
