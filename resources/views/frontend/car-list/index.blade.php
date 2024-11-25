@@ -57,7 +57,6 @@
                                     </p>
                                     <div class="d-flex justify-content-between align-items-center">
                                         <span class="h5 mb-0">Rp. {{ number_format($car->harga_sewa, 0, ',', ',') }} / day</span>
-                                        <button class="btn btn-primary">Rent Now</button>
                                     </div>
                                 </div>
                             </div>
