@@ -1,11 +1,9 @@
 @extends('layouts.frontend.app')
 @section('content')
-    @extends('layouts.frontend.app')
-@section('content')
     <div class="container p-4">
         <div class="card">
             <div class="card-body">
-                <h1>Privacy Policy</h1>
+                <h1>Terms of Service</h1>
 
                 <h2>Table of Contents</h2>
                 <ol>
@@ -127,6 +125,4 @@
             </div>
         </div>
     </div>
-@endsection
-
 @endsection

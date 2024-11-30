@@ -210,7 +210,11 @@
                     </span>
                     <span class="sidebar-text">Payment Request</span>
                     @php
-                        $paymentRequests = \App\Models\Payment::where('status', 'pending')
+                        $paymentRequests = \App\Models\Payment::where(function ($query) {
+                            $query
+                                ->where('payments.status', 'pending')
+                                ->orWhere('payments.status', 'waiting confirmation');
+                        })
                             ->where('payments.payment_proof', '!=', null)
                             ->count();
                     @endphp

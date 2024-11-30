@@ -13,6 +13,7 @@ class PaymentRequestController extends Controller
     {
         $payments = Payment::with('paymentMethod')
             ->where('payment_proof', '!=', null)
+            ->orderBy('id', 'desc')
             ->get();
 
         return view('backend.payment-request.index', compact('payments'));
@@ -26,7 +27,7 @@ class PaymentRequestController extends Controller
 
     public function getPaymentById($id)
     {
-        $payment = Payment::with('paymentMethod')->find($id);
+        $payment = Payment::with('paymentMethod', 'user')->find($id);
 
         $filename = str_replace('payment_proofs/', '', $payment->payment_proof);
         $paymentProofUrl = route('payment.proof', ['filename' => $filename]);

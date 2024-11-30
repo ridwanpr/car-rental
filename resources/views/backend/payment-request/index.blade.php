@@ -53,6 +53,8 @@
                                 <td class="text-center">
                                     @if ($payment->status == 'pending')
                                         <span class="badge bg-warning">Pending</span>
+                                    @elseif ($payment->status == 'waiting confirmation')
+                                        <span class="badge bg-info">Waiting Confirmation</span>
                                     @elseif ($payment->status == 'approved')
                                         <span class="badge bg-success">Approved</span>
                                     @elseif ($payment->status == 'declined')

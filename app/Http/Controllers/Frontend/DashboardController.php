@@ -12,6 +12,10 @@ class DashboardController extends Controller
     {
         $payments = Payment::where('user_id', auth()->id())
             ->with('rent')
+            ->where(function ($query) {
+                $query->where('status', 'pending')
+                    ->orWhere('status', 'waiting confirmation');
+            })
             ->get();
 
         return view('frontend.dashboard.index', compact('payments'));

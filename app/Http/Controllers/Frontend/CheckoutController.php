@@ -141,7 +141,8 @@ class CheckoutController extends Controller
         $fileName = Str::random(10) . '.' . $request->file('payment_proof')->getClientOriginalExtension();
 
         $payment->update([
-            'payment_proof' => $request->file('payment_proof')->storeAs('payment_proofs', $fileName)
+            'payment_proof' => $request->file('payment_proof')->storeAs('payment_proofs', $fileName),
+            'status' => 'waiting confirmation'
         ]);
 
         session()->flash('success', 'Payment created successfully.');

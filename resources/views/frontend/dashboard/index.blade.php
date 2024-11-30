@@ -125,7 +125,7 @@
         <div class="card border-0 shadow-sm mb-5">
             <div class="card-header bg-white py-4">
                 <div class="d-flex justify-content-between align-items-center">
-                    <h5 class="mb-0">Pending Payments</h5>
+                    <h5 class="mb-0">Latest Payments</h5>
                     <a href="#" class="btn btn-link btn-sm">View All</a>
                 </div>
             </div>
@@ -149,6 +149,8 @@
                                     <td class="text-center">
                                         @if ($payment->status == 'pending')
                                             <span class="badge bg-warning">Pending</span>
+                                        @elseif ($payment->status == 'waiting confirmation')
+                                            <span class="badge bg-info">Waiting Confirmation</span>
                                         @elseif ($payment->status == 'approved')
                                             <span class="badge bg-success">Approved</span>
                                         @elseif ($payment->status == 'declined')
@@ -157,7 +159,8 @@
                                     </td>
                                     <td class="text-center">{{ $payment->paymentMethod->name }} -
                                         {{ $payment->paymentMethod->bank_name }}
-                                        {{ $payment->paymentMethod->account_number }} | {{ $payment->paymentMethod->account_name }}</td>
+                                        {{ $payment->paymentMethod->account_number }} |
+                                        {{ $payment->paymentMethod->account_name }}</td>
                                     <td>
                                         <div class="btn-group">
                                             <a href="{{ route('payment-created') }}" class="btn btn-sm btn-outline-primary">

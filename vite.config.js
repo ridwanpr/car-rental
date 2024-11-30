@@ -14,6 +14,7 @@ export default defineConfig({
                 'resources/scss/booking-list.scss',
                 'resources/js/payment-request.js',
                 'resources/js/spinner.js',
+                'resources/js/rent-request.js',
             ],
             refresh: true,
         }),

@@ -19,7 +19,11 @@ class RentRequestController extends Controller
             ->select('rents.*', 'payments.*', 'cars.*', 'rents.status as rent_status')
             ->get();
 
-        // dd($requests);
         return view('backend.rent-request.index', compact('requests'));
+    }
+
+    public function show($id)
+    {
+
     }
 }

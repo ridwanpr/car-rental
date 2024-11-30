@@ -2,6 +2,7 @@ function viewPaymentDetails(paymentId) {
     $.get(`/payments/${paymentId}`)
         .done(function (response) {
             const payment = response.data;
+            console.log(payment);
 
             const formattedAmount = new Intl.NumberFormat('id-ID', {
                 style: 'currency',
@@ -16,6 +17,9 @@ function viewPaymentDetails(paymentId) {
             $('#accountName').text(payment.payment_method.account_name);
             $('#accountNumber').text(payment.payment_method.account_number);
             $('#bankName').text(payment.payment_method.bank_name);
+            $('#customerName').text(payment.user.name);
+            $('#customerEmail').text(payment.user.email);
+            $('#customerPhone').text(payment.user.phone);
 
             const proofUrl = response.payment_proof_url;
             $('#paymentProof').attr('src', proofUrl);
@@ -24,6 +28,8 @@ function viewPaymentDetails(paymentId) {
             $('#approveButton').data('payment-id', payment.id);
 
             if (payment.status.toLowerCase() === 'pending') {
+                $('.modal-footer .btn').show();
+            } else if (payment.status.toLowerCase() === 'waiting confirmation') {
                 $('.modal-footer .btn').show();
             } else {
                 $('.modal-footer .btn').hide();
@@ -116,19 +122,17 @@ function declinePayment(paymentId) {
     });
 }
 
-$(document).ready(function () {
-    $('#viewPaymentButton').on('click', function () {
-        const paymentId = $(this).data('payment-id');
-        viewPaymentDetails(paymentId);
-    });
+$(document).on('click', '#viewPaymentButton', function () {
+    const paymentId = $(this).data('payment-id');
+    viewPaymentDetails(paymentId);
+});
 
-    $('#approveButton').on('click', function () {
-        const paymentId = $(this).data('paymentId');
-        approvePayment(paymentId);
-    });
+$(document).on('click', '#approveButton', function () {
+    const paymentId = $(this).data('payment-id');
+    approvePayment(paymentId);
+});
 
-    $('#declineButton').on('click', function () {
-        const paymentId = $(this).data('paymentId');
-        declinePayment(paymentId);
-    });
+$(document).on('click', '#declineButton', function () {
+    const paymentId = $(this).data('payment-id');
+    declinePayment(paymentId);
 });

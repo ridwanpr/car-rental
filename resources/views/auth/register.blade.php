@@ -38,7 +38,7 @@
                                                 </path>
                                             </svg>
                                         </span>
-                                        <input type="text" class="form-control" placeholder="John Doe" name="name"
+                                        <input type="text" class="form-control" placeholder="Full Name" name="name"
                                             id="name" autofocus required>
                                     </div>
                                 </div>
@@ -54,8 +54,8 @@
                                                 <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
                                             </svg>
                                         </span>
-                                        <input type="email" class="form-control" placeholder="example@company.com"
-                                            name="email" id="email" autofocus required>
+                                        <input type="email" class="form-control" placeholder="Email" name="email"
+                                            id="email" autofocus required>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -94,7 +94,9 @@
                                             <input class="form-check-input" type="checkbox" value="" id="remember"
                                                 required>
                                             <label class="form-check-label fw-normal mb-0" for="remember">
-                                                I agree to the <a href="#" class="fw-bold">terms and conditions</a>
+                                                I agree to the <a href="{{ route('terms') }}" target="_blank"
+                                                    class="fw-bold">terms and
+                                                    conditions</a>
                                             </label>
                                         </div>
                                     </div>

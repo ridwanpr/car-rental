@@ -36,6 +36,7 @@
                             <th class="border-0 rounded-start">#</th>
                             <th class="border-0">Payment Code</th>
                             <th class="border-0">Rental Code</th>
+                            <th class="border-0">Customer</th>
                             <th class="border-0">Status</th>
                             <th class="border-0">Car Details</th>
                             <th class="border-0">Rent Date</th>
@@ -48,6 +49,7 @@
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $request->payment_code }}</td>
                                 <td>{{ $request->rental_code }}</td>
+                                <td>{{ $request->user->name }}</td>
                                 <td>
                                     @if ($request->rent_status == 'pending')
                                         <span class="badge bg-warning">Pending</span>
@@ -61,11 +63,12 @@
                                     <a href="{{ route('car-list.show', $request->car_id) }}"
                                         target="_blank">{{ $request->car->brand->name }} {{ $request->car->model }}</a>
                                 </td>
-                                <td>{{ $request->rent_start }} - {{ $request->rent_end }}</td>
+                                <td>{{ date('d M Y', strtotime($request->rent_start)) }} -
+                                    {{ date('d M Y', strtotime($request->rent_end)) }}</td>
                                 <td>
                                     <button class="btn btn-sm btn-primary" data-bs-toggle="modal"
-                                        data-bs-target="" id="viewRentButton"
-                                        data-request-id="{{ $request->id }}"><i class="fa fa-eye"></i></button>
+                                        data-bs-target="#rentRequestModal" id="viewRentButton"
+                                        data-rent-id="{{ $request->id }}"><i class="fa fa-eye"></i></button>
                                 </td>
                             </tr>
                         @endforeach
@@ -77,7 +80,39 @@
     </div>
 @endsection
 @push('modals')
+    @include('backend.rent-request.show')
+@endpush
+@push('css')
+    <style>
+        .modal-content {
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .list-group-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 1rem;
+            border: none;
+            border-bottom: 1px solid #f1f3f5;
+        }
+
+        .list-group-item:last-child {
+            border-bottom: none;
+        }
+
+        .btn-approve {
+            background-color: #28a745;
+            border-color: #28a745;
+        }
+
+        .btn-decline {
+            background-color: #dc3545;
+            border-color: #dc3545;
+        }
+    </style>
 @endpush
 @push('js')
-    <script></script>
+    @vite('resources/js/rent-request.js')
 @endpush

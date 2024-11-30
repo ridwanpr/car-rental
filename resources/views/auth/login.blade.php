@@ -37,7 +37,7 @@
                                                 </path>
                                             </svg>
                                         </span>
-                                        <input type="email" class="form-control" placeholder="example@company.com"
+                                        <input type="email" class="form-control" placeholder="Email"
                                             name="email" id="email" autofocus required>
                                     </div>
                                 </div>
