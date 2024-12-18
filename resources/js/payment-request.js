@@ -19,7 +19,7 @@ function viewPaymentDetails(paymentId) {
             $('#bankName').text(payment.payment_method.bank_name);
             $('#customerName').text(payment.user.name);
             $('#customerEmail').text(payment.user.email);
-            $('#customerPhone').text(payment.user.phone);
+            $('#customerPhone').text(payment.user_phone);
 
             const proofUrl = response.payment_proof_url;
             $('#paymentProof').attr('src', proofUrl);

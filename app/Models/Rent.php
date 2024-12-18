@@ -15,7 +15,11 @@ class Rent extends Model
         'rent_end',
         'price_per_day',
         'total_price',
-        'status'
+        'status',
+        'decline_message',
+        'return_date',
+        'days_late',
+        'penalty_amount',
     ];
 
     public function user()

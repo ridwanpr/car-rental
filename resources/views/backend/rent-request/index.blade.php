@@ -38,6 +38,7 @@
                             <th class="border-0">Rental Code</th>
                             <th class="border-0">Customer</th>
                             <th class="border-0">Status</th>
+                            <th class="border-0">Return Status</th>
                             <th class="border-0">Car Details</th>
                             <th class="border-0">Rent Date</th>
                             <th class="border-0 rounded-end">Action</th>
@@ -54,21 +55,36 @@
                                     @if ($request->rent_status == 'pending')
                                         <span class="badge bg-warning">Pending</span>
                                     @elseif ($request->rent_status == 'approved')
-                                        <span class="badge bg-success">Approved</span>
+                                        <span class="badge bg-success">Approved - Ongoing</span>
                                     @elseif ($request->rent_status == 'declined')
                                         <span class="badge bg-danger">Declined</span>
+                                    @else
+                                        <span class="badge bg-info">Completed - Returned</span>
                                     @endif
                                 </td>
                                 <td>
-                                    <a href="{{ route('car-list.show', $request->car_id) }}"
-                                        target="_blank">{{ $request->car->brand->name }} {{ $request->car->model }}</a>
+                                    @if ($request->days_late > 0)
+                                        {{ $request->days_late }} days late <br> Penalty: Rp
+                                        {{ number_format($request->penalty_amount, 0, ',', '.') }}
+                                    @else 
+                                        -
+                                    @endif
+                                </td>
+                                <td>
+                                    <a href="{{ route('car-list.show', $request->slug) }}" target="_blank"
+                                        class="text-info text-decoration-underline">{{ $request->car->brand->name }}
+                                        {{ $request->car->model }}</a>
                                 </td>
                                 <td>{{ date('d M Y', strtotime($request->rent_start)) }} -
                                     {{ date('d M Y', strtotime($request->rent_end)) }}</td>
                                 <td>
                                     <button class="btn btn-sm btn-primary" data-bs-toggle="modal"
                                         data-bs-target="#rentRequestModal" id="viewRentButton"
-                                        data-rent-id="{{ $request->id }}"><i class="fa fa-eye"></i></button>
+                                        data-rent-id="{{ $request->rent_id }}"><i class="fa fa-eye"></i></button>
+                                    @if ($request->rent_status == 'approved')
+                                        <button class="btn btn-sm btn-warning" id="returnCarButton"
+                                            data-rent-id="{{ $request->rent_id }}">Return Car</button>
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach

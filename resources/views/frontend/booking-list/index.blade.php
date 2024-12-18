@@ -101,7 +101,6 @@
                                 <div class="mb-3 mb-md-0">
                                     <label class="form-label fw-bold">Payment Method</label>
                                     <select class="form-select" id="payment_method">
-                                        <option value="auto">Automatic Verification</option>
                                         @foreach ($paymentMethods as $paymentMethod)
                                             <option value="{{ $paymentMethod->id }}">{{ $paymentMethod->name }} (Manual)
                                             </option>

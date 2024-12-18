@@ -27,7 +27,10 @@ class PaymentRequestController extends Controller
 
     public function getPaymentById($id)
     {
-        $payment = Payment::with('paymentMethod', 'user')->find($id);
+        $payment = Payment::with('paymentMethod', 'user')
+            ->leftJoin('user_details', 'payments.user_id', '=', 'user_details.user_id')
+            ->select('payments.*', 'user_details.phone as user_phone')
+            ->find($id);
 
         $filename = str_replace('payment_proofs/', '', $payment->payment_proof);
         $paymentProofUrl = route('payment.proof', ['filename' => $filename]);

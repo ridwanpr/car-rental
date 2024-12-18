@@ -36,7 +36,7 @@
                 <a href="{{ route('register') }}" class="btn btn-outline-primary">Get Started</a>
             @endguest
             @auth
-                <a href="{{ route('booking-list.index') }}" class="btn btn-outline-info me-2"><i class="fa fa-list"></i></a>
+                <a href="{{ route('booking-list.index') }}" class="btn btn-outline-info me-2"><i class="fa fa-shopping-cart"></i></a>
                 <a href="{{ auth()->user()->role_id == 'admin' ? route('dashboard') : route('user.dashboard') }}"
                     class="btn btn-outline-primary">Dashboard</a>
             @endauth

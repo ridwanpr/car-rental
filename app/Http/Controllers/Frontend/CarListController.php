@@ -25,6 +25,10 @@ class CarListController extends Controller
             ->where('slug', $slug)
             ->first();
 
+        if (!$car) {
+            abort(404);
+        }
+        
         $isInBookingList = BookingList::where('user_id', auth()->id())
             ->where('car_id', $car->id)
             ->exists();

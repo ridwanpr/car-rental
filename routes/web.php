@@ -16,6 +16,8 @@ use App\Http\Controllers\Backend\PaymentMethodController;
 use App\Http\Controllers\Backend\PaymentRequestController;
 use App\Http\Controllers\Backend\RentRequestController;
 use App\Http\Controllers\Frontend\DashboardController as UserDashboardController;
+use App\Http\Controllers\Frontend\PaymentListController;
+use App\Http\Controllers\Frontend\RentListController;
 
 Route::get('/', WelcomeController::class)->name('welcome');
 
@@ -27,6 +29,7 @@ Route::view('privacy', 'layouts.frontend.privacy')->name('privacy');
 Route::view('terms', 'layouts.frontend.terms')->name('terms');
 
 Route::middleware('auth')->group(function () {
+    Route::get('/payment/proof/{filename}', [PaymentRequestController::class, 'getPaymentProof'])->name('payment.proof');
     Route::middleware('role:' . User::ROLE_ADMIN)->group(function () {
         Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
@@ -35,9 +38,14 @@ Route::middleware('auth')->group(function () {
         Route::delete('profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
         Route::get('payments/{id}', [PaymentRequestController::class, 'getPaymentById']);
-        Route::get('/payment/proof/{filename}', [PaymentRequestController::class, 'getPaymentProof'])->name('payment.proof');
         Route::post('payments/{id}/approve', [PaymentRequestController::class, 'approvePayment'])->name('payments.approve');
         Route::post('payments/{id}/decline', [PaymentRequestController::class, 'rejectPayment'])->name('payments.reject');
+
+        Route::post('rents/{id}/approve', [RentRequestController::class, 'approveRent'])->name('rents.approve');
+        Route::post('rents/{id}/decline', [RentRequestController::class, 'rejectRent'])->name('rents.reject');
+
+        Route::post('/rent-requests/{id}/return', [RentRequestController::class, 'returnCar'])->name('rent-requests.return');
+        Route::post('/rent-requests/{id}/check-penalty', [RentRequestController::class, 'checkPenalty'])->name('rent-requests.check-penalty');
 
         Route::resource('user/admin', AdminController::class);
         Route::resource('brand', BrandController::class);
@@ -55,8 +63,10 @@ Route::middleware('auth')->group(function () {
             Route::get('booking-list', [BookingListController::class, 'index'])->name('booking-list.index');
 
             Route::post('checkout', [CheckoutController::class, 'checkout'])->name('booking-list.checkout');
-            Route::get('payment-created', [CheckoutController::class, 'paymentCreated'])->name('payment-created');
+            Route::get('payment-created/{id}', [CheckoutController::class, 'paymentCreated'])->name('payment-created');
             Route::post('upload-payment-proof', [CheckoutController::class, 'uploadPaymentProof'])->name('upload-payment-proof');
+            Route::resource('rent-list', RentListController::class);
+            Route::resource('payment-list', PaymentListController::class);
         });
     });
 });

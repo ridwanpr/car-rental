@@ -56,7 +56,7 @@ class CheckoutController extends Controller
 
             return response()->json([
                 'success' => true,
-                'redirect' => route('payment-created')
+                'redirect' => route('payment-created', ['id' => $payment->id])
             ]);
         } catch (\Exception $e) {
             DB::rollBack();
@@ -116,13 +116,12 @@ class CheckoutController extends Controller
         return !$overlappingRentals;
     }
 
-    public function paymentCreated()
+    public function paymentCreated($id)
     {
         $payment = Payment::with('rent')
-            ->where('user_id', auth()->id())
-            ->where('status', 'pending')
+            ->where('id', $id)
             ->first();
-
+        
         $paymentMethod = PaymentMethod::find($payment->payment_method);
 
         return view('frontend.payment.show', compact('payment', 'paymentMethod'));

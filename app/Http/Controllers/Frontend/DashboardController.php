@@ -12,12 +12,25 @@ class DashboardController extends Controller
     {
         $payments = Payment::where('user_id', auth()->id())
             ->with('rent')
-            ->where(function ($query) {
-                $query->where('status', 'pending')
-                    ->orWhere('status', 'waiting confirmation');
-            })
+            ->orderBy('created_at', 'desc')
+            ->limit(5)
             ->get();
 
-        return view('frontend.dashboard.index', compact('payments'));
+        $countActiveRent = Rent::where('user_id', auth()->id())
+            ->where('status', 'approved')
+            ->count();
+
+        $countTotalRent = Rent::where('user_id', auth()->id())
+            ->where('status', 'returned')
+            ->count();
+
+        $totalSpent = Payment::where('user_id', auth()->id())
+            ->sum('total_amount');
+
+        $countPendingPayment = Payment::where('user_id', auth()->id())
+            ->where('status', 'pending')
+            ->count();
+
+        return view('frontend.dashboard.index', compact('payments', 'countActiveRent', 'countTotalRent', 'totalSpent', 'countPendingPayment'));
     }
 }
