@@ -94,7 +94,6 @@
                                 <th>Return Date</th>
                                 <th>Penalty</th>
                                 <th>Status</th>
-                                <th>Message</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -113,7 +112,6 @@
                                     <td>{{ $rental->return_date ?? '-' }}</td>
                                     <td>Rp. {{ number_format($rental->penalty_amount, 0, ',', '.') ?? 0 }}</td>
                                     <td><span class="text-capitalize">{{ $rental->status }}</span></td>
-                                    <td>{{ \Illuminate\Support\Str::limit($rental->decline_message ?? '-', 50) }}</td>
                                 </tr>
                             @endforeach
                         </tbody>
