@@ -1,6 +1,5 @@
 @extends('layouts.frontend.app')
 @section('content')
-    <!-- Hero -->
     <section class="hero bg-primary text-white pt-4 pb-4">
         <div class="container">
             <div class="row align-items-center justify-content-between">
@@ -18,8 +17,6 @@
             </div>
         </div>
     </section>
-
-    <!-- Quick Search -->
     <section class="quick-search mt-n4">
         <div class="container">
             <div class="card">
@@ -60,8 +57,6 @@
             </div>
         </div>
     </section>
-
-    <!-- Steps -->
     <section class="py-5">
         <div class="container">
             <div class="text-center mb-5">
@@ -99,8 +94,6 @@
             </div>
         </div>
     </section>
-
-    <!-- Car List -->
     <section class="car-list bg-light py-5">
         <div class="container">
             <div class="text-center mb-5">
