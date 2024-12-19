@@ -15,6 +15,7 @@ use App\Http\Controllers\Frontend\BookingListController;
 use App\Http\Controllers\Backend\PaymentMethodController;
 use App\Http\Controllers\Backend\PaymentRequestController;
 use App\Http\Controllers\Backend\RentRequestController;
+use App\Http\Controllers\Backend\ReportController;
 use App\Http\Controllers\Frontend\DashboardController as UserDashboardController;
 use App\Http\Controllers\Frontend\PaymentListController;
 use App\Http\Controllers\Frontend\RentListController;
@@ -46,6 +47,8 @@ Route::middleware('auth')->group(function () {
 
         Route::post('/rent-requests/{id}/return', [RentRequestController::class, 'returnCar'])->name('rent-requests.return');
         Route::post('/rent-requests/{id}/check-penalty', [RentRequestController::class, 'checkPenalty'])->name('rent-requests.check-penalty');
+
+        Route::get('report', [ReportController::class, 'index'])->name('report.index');
 
         Route::resource('user/admin', AdminController::class);
         Route::resource('brand', BrandController::class);

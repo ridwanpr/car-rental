@@ -248,8 +248,8 @@
                         class="badge badge-sm bg-secondary ms-1 text-gray-800">{{ $rentRequests ? $rentRequests : '0' }}</span>
                 </a>
             </li>
-            <li class="nav-item ">
-                <a href="" class="nav-link">
+            <li class="nav-item  {{ request()->routeIs('report.index') ? 'active' : '' }}">
+                <a href="{{ route('report.index') }}" class="nav-link">
                     <span class="sidebar-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" x-bind:width="size"
                             x-bind:height="size" viewBox="0 0 24 24" fill="none" stroke="currentColor"
