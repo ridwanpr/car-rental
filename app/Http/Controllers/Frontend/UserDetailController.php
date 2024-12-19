@@ -19,6 +19,9 @@ class UserDetailController extends Controller
                 'phone' => 'required|string|max:255',
                 'address' => 'required|string|max:255',
                 'id_card' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+                'bank_name' => 'required|string|max:255',
+                'account_name' => 'required|string|max:255',
+                'account_number' => 'required|string|max:255',
             ]);
 
             if ($request->hasFile('id_card')) {

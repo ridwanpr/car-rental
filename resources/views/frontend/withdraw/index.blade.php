@@ -80,7 +80,8 @@
                                     </td>
                                     <td class="border-0">{{ $withdraw->created_at->format('d-m-Y H:i') }}</td>
                                     <td class="border-0">
-                                        <a href="" class="btn btn-sm btn-primary"><i class="fa fa-eye"></i></a>
+                                        <a href="{{ route('withdraw.show', $withdraw) }}" class="btn btn-sm btn-primary"><i
+                                                class="fa fa-eye"></i></a>
                                     </td>
                                 </tr>
                             @endforeach

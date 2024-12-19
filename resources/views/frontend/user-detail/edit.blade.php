@@ -76,6 +76,31 @@
                     </div>
 
                     <div class="mb-3">
+                        <label for="bank_name" class="form-label">Bank Name</label>
+                        <input type="text" name="bank_name" id="bank_name" class="form-control"
+                            value="{{ old('bank_name', $userDetail->bank_name) }}">
+                        @error('bank_name')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="mb-3">
+                        <label for="account_number" class="form-label">Account Number</label>
+                        <input type="text" name="account_number" id="account_number" class="form-control"
+                            value="{{ old('account_number', $userDetail->account_number) }}">
+                        @error('account_number')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="mb-3">
+                        <label for="account_name" class="form-label">Account Name</label>
+                        <input type="text" name="account_name" id="account_name" class="form-control"
+                            value="{{ old('account_name', $userDetail->account_name) }}">
+                        @error('account_name')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <div class="mb-3">
                         <label for="id_card" class="form-label">ID Card (Image)</label>
                         <input type="file" name="id_card" id="id_card" class="form-control">
                         @if ($userDetail->id_card)

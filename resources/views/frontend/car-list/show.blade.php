@@ -106,7 +106,10 @@
                                                             \App\Models\UserDetail::where('user_id', auth()->user()->id)->where(function ($query) {
                                                                     $query->whereNull('phone')->orWhere('phone', '')
                                                                         ->orWhereNull('address')->orWhere('address', '')
-                                                                        ->orWhereNull('id_card')->orWhere('id_card', '');
+                                                                        ->orWhereNull('id_card')->orWhere('id_card', '')
+                                                                        ->orWhereNull('bank_name')->orWhere('bank_name', '')
+                                                                        ->orWhereNull('account_name')->orWhere('account_name', '')
+                                                                        ->orWhereNull('account_number')->orWhere('account_number', '');
                                                                 })->exists()) disabled @endif>
                                                     <i class="fa-solid fa-cart-plus"></i> <span class="text-nowrap">Add to
                                                         Booking List</span>

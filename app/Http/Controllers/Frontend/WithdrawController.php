@@ -54,4 +54,15 @@ class WithdrawController extends Controller
         session()->flash('success', 'Withdraw created successfully.');
         return redirect()->route('withdraw.index');
     }
+
+    public function show(Withdraw $withdraw)
+    {
+        if ($withdraw->user_id !== auth()->id()) {
+            abort(403);
+        }
+
+        $userDetail = auth()->user()->user_details;
+
+        return view('frontend.withdraw.show', compact('withdraw', 'userDetail'));
+    }
 }

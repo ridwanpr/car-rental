@@ -46,7 +46,8 @@
     @if (auth()->user()->role_id == 'user')
         @if (
             \App\Models\UserDetail::where('user_id', auth()->user()->id)->where(function ($query) {
-                    $query->whereNull('phone')->orWhereNull('address')->orWhereNull('id_card');
+                    $query->whereNull('phone')->orWhereNull('address')->orWhereNull('id_card')
+                    ->orWhereNull('bank_name')->orWhereNull('account_name')->orWhereNull('account_number');
                 })->exists())
             <div class="container-fluid py-2 text-center bg-warning">
                 <i class="fa fa-exclamation-circle me-2"></i>
