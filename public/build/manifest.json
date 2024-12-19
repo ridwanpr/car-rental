@@ -18,7 +18,7 @@
     "isEntry": true
   },
   "resources/js/payment-request.js": {
-    "file": "assets/payment-request-CnKMHfVJ.js",
+    "file": "assets/payment-request-BfOJS1Cq.js",
     "name": "payment-request",
     "src": "resources/js/payment-request.js",
     "isEntry": true
@@ -27,6 +27,12 @@
     "file": "assets/price-estimator-cal7aHUz.js",
     "name": "price-estimator",
     "src": "resources/js/price-estimator.js",
+    "isEntry": true
+  },
+  "resources/js/rent-request.js": {
+    "file": "assets/rent-request-ClTuN9e2.js",
+    "name": "rent-request",
+    "src": "resources/js/rent-request.js",
     "isEntry": true
   },
   "resources/js/spinner.js": {
