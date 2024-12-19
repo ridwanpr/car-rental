@@ -49,6 +49,7 @@ Route::middleware('auth')->group(function () {
         Route::post('/rent-requests/{id}/check-penalty', [RentRequestController::class, 'checkPenalty'])->name('rent-requests.check-penalty');
 
         Route::get('report', [ReportController::class, 'index'])->name('report.index');
+        Route::get('report/pdf', [ReportController::class, 'exportPdf'])->name('report.exportPdf');
 
         Route::resource('user/admin', AdminController::class);
         Route::resource('brand', BrandController::class);

@@ -60,11 +60,16 @@
                 </div>
 
                 <div class="mb-4">
+                    <form id="exportForm" method="GET" action="{{ route('report.exportPdf') }}" target="_blank" class="d-inline">
+                        <input type="hidden" name="startDate" value="{{ $startDate }}">
+                        <input type="hidden" name="endDate" value="{{ $endDate }}">
+                        <input type="hidden" name="status" value="{{ $status }}">
+                        <button type="submit" class="btn btn-danger" id="exportPdfButton">
+                            <i class="fas fa-file-pdf"></i> Export to PDF
+                        </button>
+                    </form>
                     <button type="button" class="btn btn-success text-white" id="exportExcelButton">
                         <i class="fas fa-file-excel"></i> Export to Excel
-                    </button>
-                    <button type="button" class="btn btn-danger text-white" id="exportPdfButton">
-                        <i class="fas fa-file-pdf"></i> Export to PDF
                     </button>
                 </div>
 
@@ -82,6 +87,7 @@
                                 <th>Return Date</th>
                                 <th>Penalty</th>
                                 <th>Status</th>
+                                <th>Message</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -102,6 +108,8 @@
                                     <td><span class="text-capitalize">
                                             {{ $rental->status }}
                                         </span></td>
+                                    <td>{{ \Illuminate\Support\Str::limit($rental->decline_message ?? '-', 50) }}
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -111,15 +119,14 @@
         </div>
     </div>
 @endsection
+
 @push('scripts')
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <script>
         $(document).ready(function() {
             $('#exportExcelButton').on('click', function() {
                 alert('Export to Excel button clicked');
-            });
-
-            $('#exportPdfButton').on('click', function() {
-                alert('Export to PDF button clicked');
             });
         });
     </script>
