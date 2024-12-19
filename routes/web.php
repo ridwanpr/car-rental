@@ -19,6 +19,7 @@ use App\Http\Controllers\Backend\ReportController;
 use App\Http\Controllers\Frontend\DashboardController as UserDashboardController;
 use App\Http\Controllers\Frontend\PaymentListController;
 use App\Http\Controllers\Frontend\RentListController;
+use App\Http\Controllers\Frontend\UserDetailController;
 
 Route::get('/', WelcomeController::class)->name('welcome');
 
@@ -72,6 +73,8 @@ Route::middleware('auth')->group(function () {
             Route::post('upload-payment-proof', [CheckoutController::class, 'uploadPaymentProof'])->name('upload-payment-proof');
             Route::resource('rent-list', RentListController::class);
             Route::resource('payment-list', PaymentListController::class);
+            Route::match(['get', 'post'], 'profile', [UserDetailController::class, 'editOrUpdate'])->name('profile');
+            Route::get('id-card', [UserDetailController::class, 'getIdCard'])->name('profile.id-card');
         });
     });
 });

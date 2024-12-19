@@ -26,6 +26,9 @@
                         <li class="list-group-item">
                             <a href="{{ route('rent-list.index') }}" class="text-decoration-none text-dark">Rent List</a>
                         </li>
+                        <li class="list-group-item">
+                            <a href="{{ route('profile') }}" class="text-decoration-none text-dark">Profile</a>
+                        </li>
                     </ul>
                 </div>
             </div>

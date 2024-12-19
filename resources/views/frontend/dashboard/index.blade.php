@@ -87,7 +87,6 @@
             </div>
         </div>
 
-        <!-- Navigation -->
         <div class="card my-4 shadow-sm rounded">
             <div id="cardNav">
                 <div class="card-body">
@@ -101,6 +100,9 @@
                         </li>
                         <li class="list-group-item">
                             <a href="{{ route('rent-list.index') }}" class="text-decoration-none text-dark">Rent List</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="{{ route('profile') }}" class="text-decoration-none text-dark">Profile</a>
                         </li>
                     </ul>
                 </div>

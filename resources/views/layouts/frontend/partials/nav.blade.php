@@ -34,10 +34,27 @@
                 <a href="{{ route('register') }}" class="btn btn-warning">Get Started</a>
             @endguest
             @auth
-                <a href="{{ route('booking-list.index') }}" class="btn btn-outline-info me-2"><i class="fa fa-shopping-cart"></i></a>
+                <a href="{{ route('booking-list.index') }}" class="btn btn-outline-info me-2"><i
+                        class="fa fa-shopping-cart"></i></a>
                 <a href="{{ auth()->user()->role_id == 'admin' ? route('dashboard') : route('user.dashboard') }}"
                     class="btn btn-outline-primary">Dashboard</a>
             @endauth
         </div>
     </div>
 </nav>
+@auth
+    @if (auth()->user()->role_id == 'user')
+        @if (
+            \App\Models\UserDetail::where('user_id', auth()->user()->id)->where(function ($query) {
+                    $query->whereNull('phone')->orWhereNull('address')->orWhereNull('id_card');
+                })->exists())
+            <div class="container-fluid py-2 text-center bg-warning">
+                <i class="fa fa-exclamation-circle me-2"></i>
+                <p class="d-inline">Please complete your user data verification to ensure full access to all features.
+                    <a href="{{ route('profile') }}" class="text-decoration-underline">Click here</a>
+                </p>
+            </div>
+        @endif
+    @endif
+
+@endauth
