@@ -17,6 +17,7 @@ use App\Http\Controllers\Backend\PaymentMethodController;
 use App\Http\Controllers\Backend\PaymentRequestController;
 use App\Http\Controllers\Backend\RentRequestController;
 use App\Http\Controllers\Backend\ReportController;
+use App\Http\Controllers\Backend\WithdrawRequestController;
 use App\Http\Controllers\Frontend\DashboardController as UserDashboardController;
 use App\Http\Controllers\Frontend\PaymentListController;
 use App\Http\Controllers\Frontend\RentListController;
@@ -62,6 +63,7 @@ Route::middleware('auth')->group(function () {
         Route::resource('rent-request', RentRequestController::class);
         Route::resource('payment-request', PaymentRequestController::class);
         Route::resource('customer', CustomerController::class);
+        Route::resource('withdraw-request', WithdrawRequestController::class);
     });
 
     Route::middleware('role:' . User::ROLE_USER)->group(function () {

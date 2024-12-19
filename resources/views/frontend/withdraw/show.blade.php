@@ -62,7 +62,8 @@
                             <div class="card">
                                 <div class="card-body bg-light">
                                     <h6 class="card-subtitle mb-3 text-muted">Transfer Proof</h6>
-                                    <p class="card-text">{{ $withdraw->proof }}</p>
+                                    <img src="{{ asset('storage/' . $withdraw->proof) }}" alt="Proof Image"
+                                        class="img-fluid rounded shadow" style="max-height: 250px">
                                 </div>
                             </div>
                         @else
