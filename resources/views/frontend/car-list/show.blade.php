@@ -102,7 +102,12 @@
                                             @auth
                                                 <button class="btn btn-white btn-lg me-2" id="addToBookingList"
                                                     data-car-id="{{ $car->id }}"
-                                                    @if (auth()->user()->role_id == 'admin') disabled @endif>
+                                                    @if (auth()->user()->role_id == 'admin' ||
+                                                            \App\Models\UserDetail::where('user_id', auth()->user()->id)->where(function ($query) {
+                                                                    $query->whereNull('phone')->orWhere('phone', '')
+                                                                        ->orWhereNull('address')->orWhere('address', '')
+                                                                        ->orWhereNull('id_card')->orWhere('id_card', '');
+                                                                })->exists()) disabled @endif>
                                                     <i class="fa-solid fa-cart-plus"></i> <span class="text-nowrap">Add to
                                                         Booking List</span>
                                                 </button>
