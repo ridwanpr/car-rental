@@ -38,7 +38,7 @@
                             <th class="border-0">Rental Code</th>
                             <th class="border-0">Customer</th>
                             <th class="border-0">Status</th>
-                            <th class="border-0">Return Status</th>
+                            <th class="border-0">Penalty Status</th>
                             <th class="border-0">Car Details</th>
                             <th class="border-0">Rent Date</th>
                             <th class="border-0 rounded-end">Action</th>

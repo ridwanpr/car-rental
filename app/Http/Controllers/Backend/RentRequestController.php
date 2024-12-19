@@ -113,6 +113,11 @@ class RentRequestController extends Controller
         $daysLate = (int) abs($currentDate->diffInDays($returnDate));
         $penaltyAmount = $daysLate * $rent->price_per_day;
 
+        if (!$isLate) {
+            $daysLate = 0;
+            $penaltyAmount = 0;
+        }
+
         $rent->update([
             'status' => 'returned',
             'return_date' => $currentDate,

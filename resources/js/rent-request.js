@@ -157,7 +157,6 @@ function returnCar(rentId) {
         success: function (response) {
             let confirmText = 'Are you sure you want to return this car?';
             let htmlContent = '';
-
             if (response.is_late) {
                 htmlContent = `
                     <div class="text-start mb-3">
