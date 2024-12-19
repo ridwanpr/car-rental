@@ -8,7 +8,7 @@
             </div>
 
             <div class="row g-4">
-                @foreach ($cars as $car)
+                @forelse ($cars as $car)
                     <div class="col-12 col-md-6 col-lg-4">
                         <a href="{{ route('car-list.show', $car->slug) }}">
                             <div class="card h-100 shadow-sm">
@@ -22,13 +22,21 @@
                                         <i class="bi bi-fuel-pump"></i> {{ $car->bahan_bakar }}
                                     </p>
                                     <div class="d-flex justify-content-between align-items-center">
-                                        <span class="h5 mb-0">Rp. {{ number_format($car->harga_sewa, 0, ',', ',') }} / day</span>
+                                        <span class="h5 mb-0">Rp. {{ number_format($car->harga_sewa, 0, ',', ',') }} /
+                                            day</span>
                                     </div>
                                 </div>
                             </div>
                         </a>
                     </div>
-                @endforeach
+                @empty
+                    <div class="col-12">
+                        <div class="alert alert-info">
+                            <i class="fa fa-info-circle me-2"></i>
+                            No cars found.
+                        </div>
+                    </div>
+                @endforelse
             </div>
         </div>
     </section>

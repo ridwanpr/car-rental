@@ -21,29 +21,36 @@
         <div class="container">
             <div class="card">
                 <div class="card-body">
-                    <form action="">
+                    <form action="{{ route('car-list') }}" method="GET">
                         <div class="row justify-content-around">
                             <div class="col-md-3">
                                 <label for="carBrand" class="form-label">Car Brand</label>
-                                <select class="form-select" id="carBrand">
-                                    <option selected>Car Brand</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
+                                <select class="form-select" id="carBrand" name="carBrand">
+                                    @foreach ($brands as $brand)
+                                        <option value="{{ $brand->id }}"
+                                            {{ request('carBrand') == $brand->id ? 'selected' : '' }}>
+                                            {{ $brand->name }}
+                                        </option>
+                                    @endforeach
                                 </select>
                             </div>
                             <div class="col-md-3">
-                                <label for="seats" class="form-label">Number of Seats</label>
-                                <select class="form-select" id="seats">
-                                    <option selected>Number of Seats</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
+                                <label for="transmission" class="form-label">Transmission</label>
+                                <select class="form-select" id="transmission" name="transmission">
+                                    <option value="Manual" {{ request('transmission') == 'Manual' ? 'selected' : '' }}>
+                                        Manual</option>
+                                    <option value="Automatic"
+                                        {{ request('transmission') == 'Automatic' ? 'selected' : '' }}>Automatic</option>
                                 </select>
                             </div>
                             <div class="col-md-3">
-                                <label for="pickupDate" class="form-label">Pickup Date</label>
-                                <input type="date" class="form-control" id="pickupDate" name="pickupDate">
+                                <label for="fuelType" class="form-label">Fuel Type</label>
+                                <select class="form-select" id="fuelType" name="fuelType">
+                                    <option value="Petrol" {{ request('fuelType') == 'Petrol' ? 'selected' : '' }}>Petrol
+                                    </option>
+                                    <option value="Electric" {{ request('fuelType') == 'Electric' ? 'selected' : '' }}>
+                                        Electric</option>
+                                </select>
                             </div>
                             <div class="col-md-3">
                                 <label class="form-label">&nbsp;</label>

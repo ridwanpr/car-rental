@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Brand;
 use App\Models\Car;
 
 class WelcomeController extends Controller
@@ -11,6 +12,7 @@ class WelcomeController extends Controller
     {
         return view('welcome', [
             'cars' => Car::limit(6)->get(),
+            'brands' => Brand::all(),
         ]);
     }
 }
