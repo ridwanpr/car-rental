@@ -50,6 +50,7 @@ Route::middleware('auth')->group(function () {
 
         Route::get('report', [ReportController::class, 'index'])->name('report.index');
         Route::get('report/pdf', [ReportController::class, 'exportPdf'])->name('report.exportPdf');
+        Route::get('/report/export-excel', [ReportController::class, 'exportExcel'])->name('report.exportExcel');
 
         Route::resource('user/admin', AdminController::class);
         Route::resource('brand', BrandController::class);

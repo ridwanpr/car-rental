@@ -60,7 +60,8 @@
                 </div>
 
                 <div class="mb-4">
-                    <form id="exportForm" method="GET" action="{{ route('report.exportPdf') }}" target="_blank" class="d-inline">
+                    <form id="exportForm" method="GET" action="{{ route('report.exportPdf') }}" target="_blank"
+                        class="d-inline">
                         <input type="hidden" name="startDate" value="{{ $startDate }}">
                         <input type="hidden" name="endDate" value="{{ $endDate }}">
                         <input type="hidden" name="status" value="{{ $status }}">
@@ -68,9 +69,15 @@
                             <i class="fas fa-file-pdf"></i> Export to PDF
                         </button>
                     </form>
-                    <button type="button" class="btn btn-success text-white" id="exportExcelButton">
-                        <i class="fas fa-file-excel"></i> Export to Excel
-                    </button>
+                    <form id="exportExcelForm" method="GET" action="{{ route('report.exportExcel') }}" target="_blank"
+                        class="d-inline">
+                        <input type="hidden" name="startDate" value="{{ $startDate }}">
+                        <input type="hidden" name="endDate" value="{{ $endDate }}">
+                        <input type="hidden" name="status" value="{{ $status }}">
+                        <button type="submit" class="btn btn-success text-white" id="exportExcelButton">
+                            <i class="fas fa-file-excel"></i> Export to Excel
+                        </button>
+                    </form>
                 </div>
 
                 <div class="table-responsive">
@@ -105,11 +112,8 @@
                                     <td>{{ $rental->rent_end }}</td>
                                     <td>{{ $rental->return_date ?? '-' }}</td>
                                     <td>Rp. {{ number_format($rental->penalty_amount, 0, ',', '.') ?? 0 }}</td>
-                                    <td><span class="text-capitalize">
-                                            {{ $rental->status }}
-                                        </span></td>
-                                    <td>{{ \Illuminate\Support\Str::limit($rental->decline_message ?? '-', 50) }}
-                                    </td>
+                                    <td><span class="text-capitalize">{{ $rental->status }}</span></td>
+                                    <td>{{ \Illuminate\Support\Str::limit($rental->decline_message ?? '-', 50) }}</td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -121,12 +125,14 @@
 @endsection
 
 @push('scripts')
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <script>
         $(document).ready(function() {
             $('#exportExcelButton').on('click', function() {
-                alert('Export to Excel button clicked');
+                $('#exportExcelForm').submit();
+            });
+
+            $('#exportPdfButton').on('click', function() {
+                $('#exportForm').submit();
             });
         });
     </script>
