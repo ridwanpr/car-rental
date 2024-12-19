@@ -17,17 +17,27 @@
                 <div class="card-body">
                     <ul class="list-group list-group-horizontal">
                         <li class="list-group-item">
-                            <a href="{{ route('user.dashboard') }}" class="text-decoration-none text-dark">Dashboard</a>
+                            <a href="{{ route('user.dashboard') }}"
+                                class="text-decoration-none text-{{ request()->routeIs('user.dashboard') ? 'info' : 'dark' }}">Dashboard</a>
                         </li>
                         <li class="list-group-item">
-                            <a href="{{ route('payment-list.index') }}" class="text-decoration-none text-dark">Payment
+                            <a href="{{ route('payment-list.index') }}"
+                                class="text-decoration-none text-{{ request()->routeIs('payment-list.index') ? 'info' : 'dark' }}">Payment
                                 List</a>
                         </li>
                         <li class="list-group-item">
-                            <a href="{{ route('rent-list.index') }}" class="text-decoration-none text-dark">Rent List</a>
+                            <a href="{{ route('rent-list.index') }}"
+                                class="text-decoration-none text-{{ request()->routeIs('rent-list.index') ? 'info' : 'dark' }}">Rent
+                                List</a>
                         </li>
                         <li class="list-group-item">
-                            <a href="{{ route('profile') }}" class="text-decoration-none text-dark">Profile</a>
+                            <a href="{{ route('profile') }}"
+                                class="text-decoration-none text-{{ request()->routeIs('profile') ? 'info' : 'dark' }}">Profile</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="{{ route('withdraw.index') }}"
+                                class="text-decoration-none text-{{ request()->routeIs('withdraw.index') ? 'info' : 'dark' }}">Withdraw
+                                Balance</a>
                         </li>
                     </ul>
                 </div>
@@ -50,6 +60,7 @@
                                 <th class="border-0 text-center">Total Amount</th>
                                 <th class="border-0 text-center">Status</th>
                                 <th class="border-0 text-center">Payment Method</th>
+                                <th class="border-0 text-center">Created At</th>
                                 <th scope="col">Actions</th>
                             </tr>
                         </thead>
@@ -77,6 +88,7 @@
                                         {{ $payment->paymentMethod->bank_name }}
                                         {{ $payment->paymentMethod->account_number }} |
                                         {{ $payment->paymentMethod->account_name }}</td>
+                                    <td class="text-center">{{ $payment->created_at->format('d-m-Y H:i') }}</td>
                                     <td>
                                         <div class="btn-group">
                                             <a href="{{ route('payment-created', $payment->id) }}"

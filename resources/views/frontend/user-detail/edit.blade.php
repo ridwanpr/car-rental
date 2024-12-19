@@ -18,17 +18,27 @@
                 <div class="card-body">
                     <ul class="list-group list-group-horizontal">
                         <li class="list-group-item">
-                            <a href="{{ route('user.dashboard') }}" class="text-decoration-none text-dark">Dashboard</a>
+                            <a href="{{ route('user.dashboard') }}"
+                                class="text-decoration-none text-{{ request()->routeIs('user.dashboard') ? 'info' : 'dark' }}">Dashboard</a>
                         </li>
                         <li class="list-group-item">
-                            <a href="{{ route('payment-list.index') }}" class="text-decoration-none text-dark">Payment
+                            <a href="{{ route('payment-list.index') }}"
+                                class="text-decoration-none text-{{ request()->routeIs('payment-list.index') ? 'info' : 'dark' }}">Payment
                                 List</a>
                         </li>
                         <li class="list-group-item">
-                            <a href="{{ route('rent-list.index') }}" class="text-decoration-none text-dark">Rent List</a>
+                            <a href="{{ route('rent-list.index') }}"
+                                class="text-decoration-none text-{{ request()->routeIs('rent-list.index') ? 'info' : 'dark' }}">Rent
+                                List</a>
                         </li>
                         <li class="list-group-item">
-                            <a href="{{ route('profile') }}" class="text-decoration-none text-dark">Profile</a>
+                            <a href="{{ route('profile') }}"
+                                class="text-decoration-none text-{{ request()->routeIs('profile') ? 'info' : 'dark' }}">Profile</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="{{ route('withdraw.index') }}"
+                                class="text-decoration-none text-{{ request()->routeIs('withdraw.index') ? 'info' : 'dark' }}">Withdraw
+                                Balance</a>
                         </li>
                     </ul>
                 </div>
@@ -69,7 +79,8 @@
                         <label for="id_card" class="form-label">ID Card (Image)</label>
                         <input type="file" name="id_card" id="id_card" class="form-control">
                         @if ($userDetail->id_card)
-                            <img src="{{ route('profile.id-card') }}" alt="ID Card" class="mt-3 img-fluid" style="max-height: 200px">
+                            <img src="{{ route('profile.id-card') }}" alt="ID Card" class="mt-3 img-fluid"
+                                style="max-height: 200px">
                         @endif
                         @error('id_card')
                             <div class="text-danger">{{ $message }}</div>

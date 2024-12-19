@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\Payment;
 use App\Models\Rent;
+use App\Models\UserDetail;
 
 class DashboardController extends Controller
 {
@@ -31,6 +32,9 @@ class DashboardController extends Controller
             ->where('status', 'pending')
             ->count();
 
-        return view('frontend.dashboard.index', compact('payments', 'countActiveRent', 'countTotalRent', 'totalSpent', 'countPendingPayment'));
+        $sumUserBalance = UserDetail::where('user_id', auth()->id())
+            ->sum('balance');
+
+        return view('frontend.dashboard.index', compact('payments', 'countActiveRent', 'countTotalRent', 'totalSpent', 'countPendingPayment', 'sumUserBalance'));
     }
 }

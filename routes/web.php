@@ -21,6 +21,7 @@ use App\Http\Controllers\Frontend\DashboardController as UserDashboardController
 use App\Http\Controllers\Frontend\PaymentListController;
 use App\Http\Controllers\Frontend\RentListController;
 use App\Http\Controllers\Frontend\UserDetailController;
+use App\Http\Controllers\Frontend\WithdrawController;
 
 Route::get('/', WelcomeController::class)->name('welcome');
 
@@ -77,6 +78,7 @@ Route::middleware('auth')->group(function () {
             Route::resource('payment-list', PaymentListController::class);
             Route::match(['get', 'post'], 'profile', [UserDetailController::class, 'editOrUpdate'])->name('profile');
             Route::get('id-card', [UserDetailController::class, 'getIdCard'])->name('profile.id-card');
+            Route::resource('withdraw', WithdrawController::class);
         });
     });
 });
