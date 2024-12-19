@@ -11,6 +11,7 @@ use App\Http\Controllers\Frontend\WelcomeController;
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Auth\Socialite\LoginController;
+use App\Http\Controllers\Backend\CustomerController;
 use App\Http\Controllers\Frontend\BookingListController;
 use App\Http\Controllers\Backend\PaymentMethodController;
 use App\Http\Controllers\Backend\PaymentRequestController;
@@ -59,6 +60,7 @@ Route::middleware('auth')->group(function () {
         Route::resource('payment-method', PaymentMethodController::class);
         Route::resource('rent-request', RentRequestController::class);
         Route::resource('payment-request', PaymentRequestController::class);
+        Route::resource('customer', CustomerController::class);
     });
 
     Route::middleware('role:' . User::ROLE_USER)->group(function () {
