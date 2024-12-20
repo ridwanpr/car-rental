@@ -38,7 +38,7 @@
                                 <th class="bg-light">Status</th>
                                 <td>
                                     <span
-                                        class="badge bg-{{ $withdraw->status === 'pending' ? 'warning' : ($withdraw->status === 'approved' ? 'success' : 'danger') }}">
+                                        class="badge bg-{{ $withdraw->status === 'pending' ? 'warning' : ($withdraw->status === 'transferred' ? 'success' : 'danger') }}">
                                         {{ ucfirst($withdraw->status) }}
                                     </span>
                                 </td>
