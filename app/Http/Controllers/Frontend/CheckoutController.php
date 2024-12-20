@@ -3,13 +3,15 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Models\Rent;
+use App\Models\User;
 use App\Models\Payment;
 use App\Models\BookingList;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Models\PaymentMethod;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use App\Models\PaymentMethod;
+use App\Notifications\PaymentProofUploaded;
 
 class CheckoutController extends Controller
 {
@@ -137,7 +139,7 @@ class CheckoutController extends Controller
         ]);
 
         $payment = Payment::where('user_id', auth()->id())
-            ->where('status', 'pending')
+            ->where('id', $request->payment_id)
             ->first();
 
         $fileName = Str::random(10) . '.' . $request->file('payment_proof')->getClientOriginalExtension();
@@ -146,6 +148,11 @@ class CheckoutController extends Controller
             'payment_proof' => $request->file('payment_proof')->storeAs('payment_proofs', $fileName),
             'status' => 'waiting confirmation'
         ]);
+
+        $admins = User::where('role_id', 'admin')->get();
+        foreach ($admins as $admin) {
+            $admin->notify(new PaymentProofUploaded($payment));
+        }
 
         session()->flash('success', 'Payment created successfully.');
         return redirect()->route('user.dashboard');

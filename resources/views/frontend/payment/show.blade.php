@@ -132,6 +132,7 @@
                             <form action="{{ route('upload-payment-proof') }}" method="POST"
                                 enctype="multipart/form-data">
                                 @csrf
+                                <input type="hidden" name="payment_id" value="{{ $payment->id }}">
                                 <div class="mb-3">
                                     <label for="proofUpload" class="form-label fw-bold">Upload Payment Proof</label>
                                     <input class="form-control" type="file" id="proofUpload" name="payment_proof">
