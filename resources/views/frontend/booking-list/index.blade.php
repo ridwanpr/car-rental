@@ -80,7 +80,7 @@
                                             <div class="total-price fw-bold text-primary">Rp.0</div>
                                         </td>
                                         <td class="text-center">
-                                            <form action="" method="POST" class="d-inline">
+                                            <form action="{{ route('booking-list.destroy', $item->id) }}" method="POST" class="d-inline">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-outline-danger btn-sm"

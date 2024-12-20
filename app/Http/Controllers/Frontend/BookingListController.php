@@ -33,4 +33,10 @@ class BookingListController extends Controller
 
         return view('frontend.booking-list.index', compact('bookingLists', 'paymentMethods'));
     }
+
+    public function destroy(BookingList $bookingList)
+    {
+        $bookingList->delete();
+        return back();
+    }
 }

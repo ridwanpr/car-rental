@@ -72,6 +72,7 @@ Route::middleware('auth')->group(function () {
 
             Route::post('booking-list/add', [BookingListController::class, 'add'])->name('booking-list.add');
             Route::get('booking-list', [BookingListController::class, 'index'])->name('booking-list.index');
+            Route::delete('booking-list/{bookingList}', [BookingListController::class, 'destroy'])->name('booking-list.destroy');
 
             Route::post('checkout', [CheckoutController::class, 'checkout'])->name('booking-list.checkout');
             Route::get('payment-created/{id}', [CheckoutController::class, 'paymentCreated'])->name('payment-created');

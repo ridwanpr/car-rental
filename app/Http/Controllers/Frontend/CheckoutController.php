@@ -102,7 +102,10 @@ class CheckoutController extends Controller
     private function checkCarAvailability($carId, $startDate, $endDate)
     {
         $overlappingRentals = Rent::where('car_id', $carId)
-            ->where('status', 'ongoing')
+            ->where(function ($query) {
+                $query->where('status', 'approved')
+                    ->orWhere('status', 'pending');
+            })
             ->where(function ($query) use ($startDate, $endDate) {
                 $query->whereBetween('rent_start', [$startDate, $endDate])
                     ->orWhereBetween('rent_end', [$startDate, $endDate])
@@ -121,7 +124,7 @@ class CheckoutController extends Controller
         $payment = Payment::with('rent')
             ->where('id', $id)
             ->first();
-        
+
         $paymentMethod = PaymentMethod::find($payment->payment_method);
 
         return view('frontend.payment.show', compact('payment', 'paymentMethod'));
