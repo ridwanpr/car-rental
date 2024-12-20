@@ -31,7 +31,6 @@ class PaymentProofUploaded extends Notification implements ShouldQueue
             ->line('Payment ID: ' . $this->payment->id)
             ->line('Payment Code: ' . $this->payment->payment_code)
             ->line('Total Amount: ' . $this->payment->total_amount)
-            ->line('Payment Method: ' . $this->payment->payment_method->name)
             ->action('View Payment', route('payment-request.index'))
             ->line('Please review the payment proof.');
     }
