@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Payment;
+use App\Models\User;
+use App\Notifications\PaymentApproved;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -55,6 +57,9 @@ class PaymentRequestController extends Controller
         $payment->status = 'approved';
         $payment->save();
 
+        $user = User::find($payment->user_id);
+        $user->notify(new PaymentApproved($payment));
+
         return response()->json([
             'status' => 'success',
             'message' => 'Payment approved successfully'
@@ -66,6 +71,9 @@ class PaymentRequestController extends Controller
         $payment = Payment::find($id);
         $payment->status = 'declined';
         $payment->save();
+
+        $user = User::find($payment->user_id);
+        $user->notify(new PaymentApproved($payment));
 
         return response()->json([
             'status' => 'success',
