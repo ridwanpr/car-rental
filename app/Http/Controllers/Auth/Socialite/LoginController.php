@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth\Socialite;
 
 use App\Models\User;
+use App\Models\UserDetail;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
@@ -19,7 +20,7 @@ class LoginController extends Controller
         $user = Socialite::driver('google')->user();
         $authUser = $this->findOrCreateUser($user, 'google');
         Auth::login($authUser, true);
-        
+
         return redirect()->intended('dashboard');
     }
 
@@ -33,7 +34,7 @@ class LoginController extends Controller
             return $authUser;
         }
 
-        return User::create([
+        $user = User::create([
             'name' => $socialUser->getName(),
             'email' => $socialUser->getEmail(),
             'provider' => $provider,
@@ -41,5 +42,11 @@ class LoginController extends Controller
             'role_id' => User::ROLE_USER,
             'email_verified_at' => now(),
         ]);
+
+        UserDetail::create([
+            'user_id' => $user->id
+        ]);
+
+        return $user;
     }
 }
