@@ -6,23 +6,25 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Backend\CarController;
 use App\Http\Controllers\Backend\AdminController;
 use App\Http\Controllers\Backend\BrandController;
+use App\Http\Controllers\Backend\ReportController;
+use App\Http\Controllers\Frontend\TicketController;
+use App\Http\Controllers\Backend\CustomerController;
 use App\Http\Controllers\Frontend\CarListController;
 use App\Http\Controllers\Frontend\WelcomeController;
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Frontend\CheckoutController;
-use App\Http\Controllers\Auth\Socialite\LoginController;
-use App\Http\Controllers\Backend\CustomerController;
-use App\Http\Controllers\Frontend\BookingListController;
-use App\Http\Controllers\Backend\PaymentMethodController;
-use App\Http\Controllers\Backend\PaymentRequestController;
+use App\Http\Controllers\Frontend\RentListController;
+use App\Http\Controllers\Frontend\WithdrawController;
 use App\Http\Controllers\Backend\RentRequestController;
-use App\Http\Controllers\Backend\ReportController;
+use App\Http\Controllers\Frontend\UserDetailController;
+use App\Http\Controllers\Auth\Socialite\LoginController;
+use App\Http\Controllers\Frontend\BookingListController;
+use App\Http\Controllers\Frontend\PaymentListController;
+use App\Http\Controllers\Backend\PaymentMethodController;
+use App\Http\Controllers\Backend\TicketRequestController;
+use App\Http\Controllers\Backend\PaymentRequestController;
 use App\Http\Controllers\Backend\WithdrawRequestController;
 use App\Http\Controllers\Frontend\DashboardController as UserDashboardController;
-use App\Http\Controllers\Frontend\PaymentListController;
-use App\Http\Controllers\Frontend\RentListController;
-use App\Http\Controllers\Frontend\UserDetailController;
-use App\Http\Controllers\Frontend\WithdrawController;
 
 Route::get('/', WelcomeController::class)->name('welcome')->prerender('eager');
 
@@ -72,6 +74,11 @@ Route::middleware('auth')->group(function () {
         Route::resource('payment-request', PaymentRequestController::class);
         Route::resource('customer', CustomerController::class);
         Route::resource('withdraw-request', WithdrawRequestController::class);
+
+        Route::get('ticket-request', [TicketRequestController::class, 'index'])->name('ticket-request.index')->prerender();
+        Route::get('ticket-request/{ticket}', [TicketRequestController::class, 'show'])->name('ticket-request.show')->prerender();
+        Route::post('ticket-request/{ticket}/messages', [TicketRequestController::class, 'storeMessage'])->name('ticket-request.message.store');
+        Route::patch('ticket-request/{ticket}/status', [TicketRequestController::class, 'updateStatus'])->name('ticket-request.status.update');
     });
 
     Route::middleware('role:' . User::ROLE_USER)->group(function () {
@@ -95,6 +102,13 @@ Route::middleware('auth')->group(function () {
             Route::match(['get', 'post'], 'profile', [UserDetailController::class, 'editOrUpdate'])->name('profile')->prerender('eager');
             Route::get('id-card', [UserDetailController::class, 'getIdCard'])->name('profile.id-card');
             Route::resource('withdraw', WithdrawController::class);
+
+            Route::get('ticket', [TicketController::class, 'index'])->name('ticket.index')->prerender();
+            Route::get('ticket/create', [TicketController::class, 'create'])->name('ticket.create')->prerender();
+            Route::post('ticket', [TicketController::class, 'store'])->name('ticket.store');
+            Route::get('ticket/{ticket}', [TicketController::class, 'show'])->name('ticket.show')->prerender();
+            Route::post('ticket/{ticket}/messages', [TicketController::class, 'storeMessage'])->name('ticket.message.store');
+            Route::patch('ticket/{ticket}/status', [TicketController::class, 'updateStatus'])->name('ticket.status.update');
         });
     });
 });

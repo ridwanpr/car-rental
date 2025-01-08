@@ -246,6 +246,27 @@
                         class="badge badge-sm bg-secondary ms-1 text-gray-800">{{ $rentRequests ? $rentRequests : '0' }}</span>
                 </a>
             </li>
+
+            <li class="nav-item {{ request()->routeIs('ticket-request.index') ? 'active' : '' }}">
+                <a href="{{ route('ticket-request.index') }}" class="nav-link">
+                    <span class="sidebar-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" width="24"
+                            height="24" stroke-width="2">
+                            <path d="M12 19h-7a2 2 0 0 1 -2 -2v-10a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v8"></path>
+                            <path d="M16 19h6"></path>
+                            <path d="M3 7l9 6l9 -6"></path>
+                        </svg>
+                    </span>
+                    <span class="sidebar-text">Tickets</span>
+                    @php
+                        $ticketRequest = \App\Models\Ticket::where('status', '!=', 'closed')->count();
+                    @endphp
+                    <span
+                        class="badge badge-sm bg-secondary ms-1 text-gray-800">{{ $ticketRequest ? $ticketRequest : '0' }}</span>
+                </a>
+            </li>
+
             <li class="nav-item {{ request()->routeIs('withdraw-request.index') ? 'active' : '' }}">
                 <a href="{{ route('withdraw-request.index') }}" class="nav-link">
                     <span class="sidebar-icon">
