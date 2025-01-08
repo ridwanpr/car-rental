@@ -18,7 +18,7 @@ class TicketRequestController extends Controller
 
     public function show(Ticket $ticket)
     {
-        $messages = $ticket->messages()->with('user')->latest()->get();
+        $messages = $ticket->messages()->with('user')->orderBy('created_at', 'asc')->get();
 
         return view('backend.ticket.show', compact('ticket', 'messages'));
     }
