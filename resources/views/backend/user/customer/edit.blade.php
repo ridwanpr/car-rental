@@ -58,7 +58,7 @@
                     <label for="id_card" class="form-label">ID Card</label>
                     <input type="file" name="id_card" id="id_card" class="form-control">
                     @if ($customer->user_details && $customer->user_details->id_card)
-                        <a href="{{ route('get.id.card', basename($customer->user_details->id_card)) }}"
+                        <a href="{{ route('profile.id-card', basename($customer->user_details->id_card)) }}"
                             target="_blank">View Current ID Card</a>
                     @endif
                 </div>
