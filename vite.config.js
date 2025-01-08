@@ -15,6 +15,7 @@ export default defineConfig({
                 'resources/js/payment-request.js',
                 'resources/js/spinner.js',
                 'resources/js/rent-request.js',
+                'resources/js/echo.js',
             ],
             refresh: true,
         }),
