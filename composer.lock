@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d98ed583048f6fc78f8a53f643533301",
+    "content-hash": "38e809486e7fae5f553f23778a647b65",
     "packages": [
         {
             "name": "barryvdh/laravel-dompdf",
@@ -1490,6 +1490,81 @@
                 }
             ],
             "time": "2023-12-03T19:50:20+00:00"
+        },
+        {
+            "name": "innoge/laravel-speculation-rules-api",
+            "version": "v0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/InnoGE/laravel-speculation-rules-api.git",
+                "reference": "2c7788c176856f2ee5260da25aa37bbe1faa1cf0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/InnoGE/laravel-speculation-rules-api/zipball/2c7788c176856f2ee5260da25aa37bbe1faa1cf0",
+                "reference": "2c7788c176856f2ee5260da25aa37bbe1faa1cf0",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": "^10.0||^11.0",
+                "php": "^8.2",
+                "spatie/laravel-package-tools": "^1.16"
+            },
+            "require-dev": {
+                "larastan/larastan": "^2.9",
+                "laravel/pint": "^1.14",
+                "mockery/mockery": "^1.6",
+                "nunomaduro/collision": "^8.1.1||^7.10.0",
+                "orchestra/testbench": "^9.0.0||^8.22.0",
+                "pestphp/pest": "^2.34",
+                "pestphp/pest-plugin-arch": "^2.7",
+                "pestphp/pest-plugin-laravel": "^2.3",
+                "phpstan/extension-installer": "^1.3",
+                "phpstan/phpstan-deprecation-rules": "^1.1",
+                "phpstan/phpstan-phpunit": "^1.3",
+                "spatie/laravel-ray": "^1.35"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "InnoGE\\LaravelSpeculationRulesApi\\LaravelSpeculationRulesApiServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "InnoGE\\LaravelSpeculationRulesApi\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Daniel Seuffer",
+                    "email": "authanram@users.noreply.github.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A Laravel package as streamlined solution to utilize the speculation rules api.",
+            "homepage": "https://github.com/innoge/laravel-speculation-rules-api",
+            "keywords": [
+                "innoge",
+                "laravel"
+            ],
+            "support": {
+                "issues": "https://github.com/InnoGE/laravel-speculation-rules-api/issues",
+                "source": "https://github.com/InnoGE/laravel-speculation-rules-api/tree/v0.1.0"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/InnoGE",
+                    "type": "github"
+                }
+            ],
+            "time": "2024-08-09T17:06:08+00:00"
         },
         {
             "name": "laravel/breeze",

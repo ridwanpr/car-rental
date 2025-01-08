@@ -24,19 +24,19 @@ use App\Http\Controllers\Frontend\RentListController;
 use App\Http\Controllers\Frontend\UserDetailController;
 use App\Http\Controllers\Frontend\WithdrawController;
 
-Route::get('/', WelcomeController::class)->name('welcome');
+Route::get('/', WelcomeController::class)->name('welcome')->prerender('eager');
 
 // Socialite Auth
 Route::get('login/google', [LoginController::class, 'redirectToGoogle'])->name('login.google');
 Route::get('login/google/callback', [LoginController::class, 'handleGoogleCallback']);
 
-Route::view('privacy', 'layouts.frontend.privacy')->name('privacy');
-Route::view('terms', 'layouts.frontend.terms')->name('terms');
+Route::view('privacy', 'layouts.frontend.privacy')->name('privacy')->prerender('eager');
+Route::view('terms', 'layouts.frontend.terms')->name('terms')->prerender('eager');
 
 Route::middleware('auth')->group(function () {
     Route::get('/payment/proof/{filename}', [PaymentRequestController::class, 'getPaymentProof'])->name('payment.proof');
     Route::middleware('role:' . User::ROLE_ADMIN)->group(function () {
-        Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
+        Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard')->prerender('eager');
 
         Route::get('profile', [ProfileController::class, 'edit'])->name('profile.edit');
         Route::patch('profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -52,9 +52,17 @@ Route::middleware('auth')->group(function () {
         Route::post('/rent-requests/{id}/return', [RentRequestController::class, 'returnCar'])->name('rent-requests.return');
         Route::post('/rent-requests/{id}/check-penalty', [RentRequestController::class, 'checkPenalty'])->name('rent-requests.check-penalty');
 
-        Route::get('report', [ReportController::class, 'index'])->name('report.index');
+        Route::get('report', [ReportController::class, 'index'])->name('report.index')->prerender('eager');
         Route::get('report/pdf', [ReportController::class, 'exportPdf'])->name('report.exportPdf');
         Route::get('/report/export-excel', [ReportController::class, 'exportExcel'])->name('report.exportExcel');
+
+        Route::get('brand', [BrandController::class, 'index'])->name('brand.index')->prerender('eager');
+        Route::get('car', [CarController::class, 'index'])->name('car.index')->prerender('eager');
+        Route::get('payment-method', [PaymentMethodController::class, 'index'])->name('payment-method.index')->prerender('eager');
+        Route::get('rent-request', [RentRequestController::class, 'index'])->name('rent-request.index')->prerender('eager');
+        Route::get('payment-request', [PaymentRequestController::class, 'index'])->name('payment-request.index')->prerender('eager');
+        Route::get('customer', [CustomerController::class, 'index'])->name('customer.index')->prerender('eager');
+        Route::get('withdraw-request', [WithdrawRequestController::class, 'index'])->name('withdraw-request.index')->prerender('eager');
 
         Route::resource('user/admin', AdminController::class);
         Route::resource('brand', BrandController::class);
@@ -68,26 +76,31 @@ Route::middleware('auth')->group(function () {
 
     Route::middleware('role:' . User::ROLE_USER)->group(function () {
         Route::middleware('verified')->group(function () {
-            Route::get('mypanel/dashboard', [UserDashboardController::class, 'index'])->name('user.dashboard');
+            Route::get('mypanel/dashboard', [UserDashboardController::class, 'index'])->name('user.dashboard')->prerender('eager');
 
             Route::post('booking-list/add', [BookingListController::class, 'add'])->name('booking-list.add');
-            Route::get('booking-list', [BookingListController::class, 'index'])->name('booking-list.index');
+            Route::get('booking-list', [BookingListController::class, 'index'])->name('booking-list.index')->prerender();
             Route::delete('booking-list/{bookingList}', [BookingListController::class, 'destroy'])->name('booking-list.destroy');
 
             Route::post('checkout', [CheckoutController::class, 'checkout'])->name('booking-list.checkout');
             Route::get('payment-created/{id}', [CheckoutController::class, 'paymentCreated'])->name('payment-created');
             Route::post('upload-payment-proof', [CheckoutController::class, 'uploadPaymentProof'])->name('upload-payment-proof');
+
+            Route::get('payment-list', [PaymentListController::class, 'index'])->name('payment-list.index')->prerender('eager');
+            Route::get('rent-list', [RentListController::class, 'index'])->name('rent-list.index')->prerender('eager');
+            Route::get('withdraw', [WithdrawController::class, 'index'])->name('withdraw.index')->prerender('eager');
+
             Route::resource('rent-list', RentListController::class);
-            Route::resource('payment-list', PaymentListController::class);
-            Route::match(['get', 'post'], 'profile', [UserDetailController::class, 'editOrUpdate'])->name('profile');
+            // Route::resource('payment-list', PaymentListController::class);
+            Route::match(['get', 'post'], 'profile', [UserDetailController::class, 'editOrUpdate'])->name('profile')->prerender('eager');
             Route::get('id-card', [UserDetailController::class, 'getIdCard'])->name('profile.id-card');
             Route::resource('withdraw', WithdrawController::class);
         });
     });
 });
 
-Route::get('car-list', [CarListController::class, 'index'])->name('car-list');
-Route::get('car-list/{slug}', [CarListController::class, 'show'])->name('car-list.show');
-Route::view('calculate-price', 'frontend.calculate-price.index');
+Route::get('car-list', [CarListController::class, 'index'])->name('car-list')->prerender('eager');
+Route::get('car-list/{slug}', [CarListController::class, 'show'])->name('car-list.show')->prerender();
+Route::view('calculate-price', 'frontend.calculate-price.index')->prerender();
 
 require __DIR__ . '/auth.php';

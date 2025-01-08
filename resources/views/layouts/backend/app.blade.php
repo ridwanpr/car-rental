@@ -16,6 +16,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link type="text/css" href="{{ asset('css/volt.css') }}" rel="stylesheet">
     @stack('css')
+    @speculationRulesApi
 </head>
 
 <body>
