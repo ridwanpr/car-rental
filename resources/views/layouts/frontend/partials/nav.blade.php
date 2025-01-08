@@ -34,8 +34,10 @@
                 <a href="{{ route('register') }}" class="btn btn-warning">Get Started</a>
             @endguest
             @auth
+                @if(auth()->user()->role_id != 'admin')
                 <a href="{{ route('booking-list.index') }}" class="btn btn-outline-info me-2"><i
                         class="fa fa-shopping-cart"></i></a>
+                @endif
                 <a href="{{ auth()->user()->role_id == 'admin' ? route('dashboard') : route('user.dashboard') }}"
                     class="btn btn-outline-primary">Dashboard</a>
             @endauth

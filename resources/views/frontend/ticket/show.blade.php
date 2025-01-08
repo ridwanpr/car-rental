@@ -1,4 +1,5 @@
 @extends('layouts.frontend.app')
+
 @section('content')
     <div class="container-fluid py-4">
         <div class="container max-w-5xl mx-auto">
@@ -14,14 +15,25 @@
                         </p>
                     </div>
                     <div class="d-flex align-items-center gap-3">
-                        <span
-                            class="px-3 py-1 rounded-pill fw-medium fs-7 {{ $ticket->status == 'open'
-                                ? 'bg-success-subtle text-success'
-                                : ($ticket->status == 'in_progress'
-                                    ? 'bg-warning-subtle text-warning'
-                                    : 'bg-danger-subtle text-danger') }}">
-                            {{ ucfirst($ticket->status) }}
-                        </span>
+                        <!-- Update Status Dropdown -->
+                        @if ($ticket->status !== 'closed')
+                            <form id="statusForm" action="{{ route('ticket.status.update', $ticket->id) }}" method="POST">
+                                @csrf
+                                @method('PATCH')
+                                <select class="form-select form-select-sm" name="status" id="statusSelect"
+                                    onchange="this.form.submit()">
+                                    <option value="open" {{ $ticket->status == 'open' ? 'selected' : '' }}>Open</option>
+                                    <option value="in_progress" {{ $ticket->status == 'in_progress' ? 'selected' : '' }}>In
+                                        Progress</option>
+                                    <option value="closed" {{ $ticket->status == 'closed' ? 'selected' : '' }}>Closed
+                                    </option>
+                                </select>
+                            </form>
+                        @else
+                            <span class="px-3 py-1 rounded-pill fw-medium fs-7 bg-danger-subtle text-danger">
+                                Closed
+                            </span>
+                        @endif
                         <a href="{{ route('ticket.index') }}" class="btn btn-light btn-sm px-3">
                             <i class="fas fa-arrow-left me-2"></i>Back
                         </a>
@@ -77,6 +89,7 @@
         </div>
     </div>
 @endsection
+
 @push('styles')
     <style>
         .fs-7 {
@@ -110,6 +123,7 @@
         }
     </style>
 @endpush
+
 @push('js')
     <script type="module">
         $(document).ready(function() {

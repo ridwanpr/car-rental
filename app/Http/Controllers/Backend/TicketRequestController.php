@@ -12,7 +12,7 @@ class TicketRequestController extends Controller
 {
     public function index()
     {
-        $tickets = Ticket::get();
+        $tickets = Ticket::latest()->get();
         return view('backend.ticket.index', compact('tickets'));
     }
 
@@ -36,6 +36,10 @@ class TicketRequestController extends Controller
             ], 403);
         }
 
+        Ticket::where('id', $ticket->id)->update([
+            'status' => 'in_progress'
+        ]);
+
         $message = TicketMessage::create([
             'ticket_id' => $ticket->id,
             'user_id' => auth()->user()->id,
@@ -51,4 +55,23 @@ class TicketRequestController extends Controller
             'message' => $message
         ]);
     }
+
+    public function updateStatus(Request $request, Ticket $ticket)
+    {
+        $request->validate([
+            'status' => 'required|in:open,in_progress,closed',
+        ]);
+    
+        if ($ticket->status === 'closed' && $request->status !== 'closed') {
+            return redirect()->route('ticket-request.show', $ticket->id)
+                ->with('error', 'Cannot reopen a closed ticket');
+        }
+    
+        $ticket->status = $request->status;
+        $ticket->save();
+    
+        return redirect()->route('ticket-request.show', $ticket->id)
+            ->with('success', 'Ticket status updated successfully');
+    }
+    
 }
