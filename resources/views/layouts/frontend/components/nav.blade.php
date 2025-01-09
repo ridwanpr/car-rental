@@ -17,8 +17,8 @@
                         List</a>
                 </li>
                 <li class="list-group-item">
-                    <a href="{{ route('profile') }}"
-                        class="text-decoration-none text-{{ request()->routeIs('profile') ? 'info' : 'dark' }}">Profile</a>
+                    <a href="{{ route('profile.user') }}"
+                        class="text-decoration-none text-{{ request()->routeIs('profile.user') ? 'info' : 'dark' }}">Profile</a>
                 </li>
                 <li class="list-group-item">
                     <a href="{{ route('withdraw.index') }}"

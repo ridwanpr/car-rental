@@ -24,7 +24,7 @@
                     </div>
                 @endif
 
-                <form action="{{ route('profile') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('profile.user') }}" method="POST" enctype="multipart/form-data">
                     @csrf
 
                     <div class="mb-3">

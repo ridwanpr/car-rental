@@ -38,7 +38,7 @@ class UserDetailController extends Controller
             $userDetail->update($validatedData);
 
             session()->flash('success', 'Profile updated successfully.');
-            return redirect()->route('profile');
+            return redirect()->route('profile.user');
         }
 
         return view('frontend.user-detail.edit', compact('userDetail'));
