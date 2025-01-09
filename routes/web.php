@@ -99,7 +99,7 @@ Route::middleware('auth')->group(function () {
 
             Route::resource('rent-list', RentListController::class);
             // Route::resource('payment-list', PaymentListController::class);
-            Route::match(['get', 'post'], 'profile', [UserDetailController::class, 'editOrUpdate'])->name('profile.user')->prerender('eager');
+            Route::match(['get', 'post'], 'my-profile', [UserDetailController::class, 'editOrUpdate'])->name('profile.user')->prerender('eager');
             Route::get('id-card', [UserDetailController::class, 'getIdCard'])->name('profile.id-card');
             Route::resource('withdraw', WithdrawController::class);
 
