@@ -106,7 +106,7 @@
                                     <button type="submit" class="btn btn-gray-800 mt-2">Sign up</button>
                                 </div>
                             </form>
-                            <div class="mt-3 mb-4 text-center">
+                            {{-- <div class="mt-3 mb-4 text-center">
                                 <span class="fw-normal">or login with</span>
                             </div>
                             <div class="d-flex justify-content-center my-4">
@@ -122,7 +122,7 @@
                                         </path>
                                     </svg>
                                 </a>
-                            </div>
+                            </div> --}}
                             <div class="d-flex justify-content-center align-items-center mt-4">
                                 <span class="fw-normal">
                                     Already have an account?
