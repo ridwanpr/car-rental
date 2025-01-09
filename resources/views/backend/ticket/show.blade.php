@@ -40,14 +40,18 @@
                 <!-- Messages Area -->
                 <div class="chat-messages p-4" id="messageContainer" style="height: 65vh; overflow-y: auto;">
                     @foreach ($messages as $message)
-                        <div class="chat-message mb-4 {{ $message->user_id === auth()->id() ? 'ms-auto' : 'me-auto' }}"
-                            style="max-width: 85%;">
-                            <div
-                                class="d-flex flex-column {{ $message->user_id === auth()->id() ? 'align-items-end' : 'align-items-start' }}">
+                        @php
+                            $isAdmin = $message->user->role_id === 'admin';
+                            $isCurrentUser = $message->user_id === auth()->id();
+                            $alignRight = $isAdmin;
+                        @endphp
+
+                        <div class="chat-message mb-4 {{ $alignRight ? 'ms-auto' : 'me-auto' }}" style="max-width: 85%;">
+                            <div class="d-flex flex-column {{ $alignRight ? 'align-items-end' : 'align-items-start' }}">
                                 <small class="text-muted mb-1">{{ $message->user->name }}</small>
                                 <div class="message-content">
                                     <div
-                                        class="p-3 rounded-3 {{ $message->user_id === auth()->id() ? 'bg-primary bg-gradient text-white' : 'bg-light border' }}">
+                                        class="p-3 rounded-3 {{ $alignRight ? 'bg-primary bg-gradient text-white' : 'bg-light border' }}">
                                         {{ $message->message }}
                                     </div>
                                     <small class="text-muted d-block mt-1">
