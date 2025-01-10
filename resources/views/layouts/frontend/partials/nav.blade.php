@@ -15,9 +15,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('car-list') }}">Car List</a>
                 </li>
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a class="nav-link" href="/calculate-price">Calculate Price</a>
-                </li>
+                </li> --}}
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
@@ -34,9 +34,9 @@
                 <a href="{{ route('register') }}" class="btn btn-warning">Get Started</a>
             @endguest
             @auth
-                @if(auth()->user()->role_id != 'admin')
-                <a href="{{ route('booking-list.index') }}" class="btn btn-outline-info me-2"><i
-                        class="fa fa-shopping-cart"></i></a>
+                @if (auth()->user()->role_id != 'admin')
+                    <a href="{{ route('booking-list.index') }}" class="btn btn-outline-info me-2"><i
+                            class="fa fa-shopping-cart"></i></a>
                 @endif
                 <a href="{{ auth()->user()->role_id == 'admin' ? route('dashboard') : route('user.dashboard') }}"
                     class="btn btn-outline-primary">Dashboard</a>
@@ -48,8 +48,7 @@
     @if (auth()->user()->role_id == 'user')
         @if (
             \App\Models\UserDetail::where('user_id', auth()->user()->id)->where(function ($query) {
-                    $query->whereNull('phone')->orWhereNull('address')->orWhereNull('id_card')
-                    ->orWhereNull('bank_name')->orWhereNull('account_name')->orWhereNull('account_number');
+                    $query->whereNull('phone')->orWhereNull('address')->orWhereNull('id_card')->orWhereNull('bank_name')->orWhereNull('account_name')->orWhereNull('account_number');
                 })->exists())
             <div class="container-fluid py-2 text-center bg-warning">
                 <i class="fa fa-exclamation-circle me-2"></i>
