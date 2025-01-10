@@ -53,7 +53,7 @@
             <div class="container-fluid py-2 text-center bg-warning">
                 <i class="fa fa-exclamation-circle me-2"></i>
                 <p class="d-inline">Please complete your user data verification to ensure full access to all features.
-                    <a href="{{ route('profile') }}" class="text-decoration-underline">Click here</a>
+                    <a href="{{ route('profile.user') }}" class="text-decoration-underline">Click here</a>
                 </p>
             </div>
         @endif
